@@ -1,0 +1,33 @@
+*{
+  padding: none;
+  margin: none;
+}
+
+:root{
+  --primary-color: #;
+}
+
+header .navBar{
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+header .navBar a img{
+  width: 6vw;
+  border-radius: 5rem;
+}
+
+header .navBar ul{
+  display: flex;
+  justify-content: space-between;
+  width: 15vw;
+}
+
+header .navBar ul a{
+  text-decoration: none;
+  color: var(--primary-color);
+}
