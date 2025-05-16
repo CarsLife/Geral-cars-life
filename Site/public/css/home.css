@@ -1,4 +1,8 @@
+/* Configurações gerais */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url(./style/color.css);
+@import url(./style/footer.css);
+@import url(./style/navBar.css);
 
 * {
   padding: 0;
@@ -6,78 +10,9 @@
   font-family: 'montserrat';
 }
 
-:root {
-  --backgroundBody: #1B1818;
-  --darkRed: #660000;
-  --textColor: #fff;
-}
-
 body {
   height: 238.77vh;
   background-color: var(--backgroundBody);
-}
-
-header {
-  width: 100%;
-  height: 19.53vh;
-  z-index: 10;
-  background-color: var(--darkRed);
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-header .navBar {
-  width: 80%;
-  height: 6.84vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-header .navBar .a {
-  height: 8.79vh;
-  justify-self: center;
-  width: 6.25vw;
-}
-
-header .navBar .routes {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 31.94vw;
-}
-
-header .navBar .routes a img {
-  width: 4.5vw;
-}
-
-header .navBar .routes a {
-  text-decoration: none;
-  color: var(--textColor);
-  font-weight: bold;
-  font-size: 1.67vw;
-  position: relative;
-}
-
-header .navBar .routes .text::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: var(--textColor);
-  transition: transform 0.25s ease-out;
-  transform-origin: bottom center;
-}
-
-header .navBar .routes .text:hover::after {
-  transform: scaleX(1);
-  transform-origin: bottom center;
 }
 
 .container {
@@ -148,6 +83,8 @@ header .navBar .routes .text:hover::after {
   width: 4.87vw;
   height: 3.8vh;
 }
+
+/* Missão visão e valores cards */
 
 .missionPage {
   width: 100%;
@@ -221,84 +158,4 @@ header .navBar .routes .text:hover::after {
   align-items: center;
   width: 28.13vw;
   height: 67.87vh;
-}
-
-
-
-.footer {
-  width: 100%;
-  height: 38.67vh;
-  display: flex;
-  align-items: end;
-  justify-content: center;
-  background-color: var(--darkRed);
-}
-
-.footer .footerContent {
-  color: var(--textColor);
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  align-items: center;
-  width: 53.64vw;
-  height: 22.46vh;
-}
-
-.secoes {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  margin-bottom: 3vh;
-  width: 100%;
-  height: 19.64vh;
-}
-
-.secoes .sessao{
-  width: 18.13vw;
-  height: 27.66vh;
-  font-size: 1.67vw;
-  font-weight: 600;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.secoes .sobre p{
-  text-align: center;
-}
-
-.secoes .atalhos .redirecao {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-}
-
-.secoes .atalhos .redirecao a{
-  text-decoration: none;
-  color: var(--textColor);
-  position: relative;
-}
-
-.secoes .atalhos .redirecao a::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: var(--textColor);
-  transition: transform 0.25s ease-out;
-  transform-origin: bottom center;
-}
-
-.secoes .atalhos .redirecao a:hover::after {
-  transform: scaleX(1);
-  transform-origin: bottom center;
-}
-
-.direitos{
-  font-size: 2.22vw;
-  font-weight: bold;
 }

@@ -1,0 +1,85 @@
+/* Configurações gerais */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url(./style/color.css);
+@import url(./style/footer.css);
+@import url(./style/navBar.css);
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'montserrat';
+}
+
+body {
+  height: 184.57vh;
+  background-color: var(--backgroundBody);
+}
+
+.container {
+  padding-top: 22vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 126.46vh;
+  gap: 5vh;
+}
+
+.container .sobre {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--textColor);
+  gap: 3vh;
+}
+
+.container .sobre .content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container .sobre .content {
+  width: 91vw;
+  gap: 5vw;
+}
+
+.container .sobre .content .foto1 {
+  width: 20.83vw;
+  height: 29.3vh;
+  object-fit: cover;
+  box-shadow: 0vw 0vh 100px var(--darkRed);
+  border-radius: 4.86vw;
+}
+
+.container .sobre .content .foto2 {
+  width: 24.31vw;
+  height: 39.06vh;
+  object-fit: cover;
+  box-shadow: 0vw 0vh 100px var(--darkRed);
+  border-radius: 4.86vw;
+}
+
+.container .sobre .content .card {
+  height: fit-content;
+  width: fit-content;
+  border-radius: 4.86vw;
+  background-color: var(--darkRed);
+}
+
+.container .sobre .content .card p {
+  font-size: 2vw;
+  font-weight: 500;
+  text-align: center;
+  padding-inline: 2vw;
+  padding-block: 5vh;
+}
+
+
+.container .sobre h1 {
+  font-size: 4.44vw;
+  width: 60.21vw;
+  text-align: center;
+}

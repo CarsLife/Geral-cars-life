@@ -13,30 +13,21 @@
   <link rel="stylesheet" href="./css/estilo.css" />
   <link rel="icon" href="./assets/icon/favicon2.ico" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link rel="stylesheet" href="./css/cadastro.css">
 </head>
 
 <body onload="listar()">
   <!--header inicio-->
-  <div class="header">
-    <div class="container">
-      <h1 class="titulo">AquaTech</h1>
-      <ul class="navbar">
-        <li>
-          <a href="index.html">Inicial</a>
-        </li>
-        <li>
-          <a href="simulador.html">Simulador</a>
-        </li>
-        <li>|</li>
-        <li>
-          <a href="login.html">Login</a>
-        </li>
-        <li class="agora">
-          <a href="#">Cadastro</a>
-        </li>
-      </ul>
+  <header>
+    <div class="navBar">
+      <a href="./index.html"><img src="./assets/logo.svg" alt="" style="width: 5.69vw;"></a>
+      <section class="routes">
+        <a href="./index.html" class="text">Home</a>
+        <a href="./sobre.html" class="text">Sobre</a>
+        <a href="./cadastro.html"><img src="./assets/profile.svg" alt="login"></a>
+      </section>
     </div>
-  </div>
+  </header>
   <!--header fim-->
 
   <div class="login">
@@ -85,10 +76,25 @@
   </div>
 
   <!--footer inicio-->
-  <div class="footer">
-    <div class="container">
-      <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-      <span class="version">v1.0.0</span>
+    <div class="footer">
+    <div class="footerContent">
+      <div class="secoes">
+        <section class="sessao sobre">
+          <h2>Sobre</h2>
+          <p>Ajudamos jovens a encontrar o carro ideal com tecnologia, análise e transparência.</p>
+        </section>
+        <section class="sessao atalhos">
+          <h2>Atalhos</h2>
+          <section class="redirecao">
+              <a href="./index.html">Início</a>
+              <a href="./sobre.html">Sobre</a>
+              <a href="./login.html">Login</a>
+              <a href="./cadastro.html">Cadastre-se</a>
+              <a href="https://www.webmotors.com.br">Comprar Carros</a>
+          </section>
+        </section>
+      </div>
+      <p class="direitos">© 2025 CarsLife. Todos os direitos reservados.</p>
     </div>
   </div>
   <!--footer fim-->
@@ -98,7 +104,7 @@
 
 <script>
 
-  // Array para armazenar empresas cadastradas para validação de código de ativação 
+  // Array para armazenar empresas cadastradas para validação de código de ativação
   let listaEmpresasCadastradas = [];
 
   function cadastrar() {
@@ -186,7 +192,7 @@
     return false;
   }
 
-  // Listando empresas cadastradas 
+  // Listando empresas cadastradas
   function listar() {
     fetch("/empresas/listar", {
       method: "GET",
