@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('./style/color.css');  /* suas variáveis */
+@import url('./style/footer.css');
+@import url('./style/navBar.css');
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'montserrat';
+}
+
+body {
+  height: 138.67vh;
+  width: 100%;
+  background-color: var(--backgroundBody);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container{
+  padding-top: 22vh;
+  height: 68.36vh;
+  width: 77.08vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container h1 {
+  font-size: 4.44vw;
+  width: 48.61vw;
+  height: 9.77vh;
+  color: var(--textColor);
+  font-weight: 700;
+  margin-bottom: 3vh;
+}
+
+.container .form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--textColor);
+  font-size: 2.22vw;
+  font-weight: 600;
+  gap: 4.88vh;
+}
+
+.container .form .input {
+  width: 55.56vw;
+  height: 14.65vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--darkRed);
+  border-radius: 4.86vw;
+}
+
+.container .form .input p {
+  margin-left: 3.06vw;
+  margin-top: 3.42vh;
+}
+
+.container .form .input input {
+  margin-left: 3.06vw;
+  width: 47.84vw;
+  height: 3.91vh;
+  border-radius: 4.86vw;
+  border: none;
+  font-size: 1.67vw;
+  font-weight: 500;
+  padding-inline: .8vw;
+}
+
+.container .form .input input::placeholder {
+  font-weight: bold;
+  color: var(--placeHolder);
+}
+
+.container .button{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container .button button{
+  width: 30vh;
+  height: 6.84vh;
+  font-size: 2.22vw;
+  font-weight: 600;
+  border-radius: 5.86vw;
+  background-color: var(--darkRed);
+  border: none;
+  color: var(--textColor);
+  transition-duration: .2s;
+}
+
+.container .button button:hover{
+  transition-duration: .2s;
+  color: var(--darkRed);
+  background-color: var(--textColor);
+  box-shadow: -3px 2px 5px 5px var(--darkRed);
+  cursor: pointer;
+}
+
+.container .button a{
+  text-decoration: none;
+  color: var(--textColor);
+  font-size: 0.9vw;
+}
+
+.container .button a span{
+  color: var(--link);
+  transition-duration: .2s;
+}
+
+.container .button a span:hover{
+  text-decoration: underline;
+  transition-duration: .2s;
+}

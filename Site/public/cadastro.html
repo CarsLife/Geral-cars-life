@@ -26,7 +26,7 @@
   </header>
 
   <div class="container">
-    <h1>Seja bem vindo</h1>
+    <h1>Seja bem vindo!</h1>
     <div class="form">
       <section class="input">
         <p>Digite seu nome:</p>
@@ -60,25 +60,25 @@
         <p>Digite o ano minimo do carro:</p>
         <input type="number" id="iptMinAno" placeholder="2010">
       </section>
-      <section class="input">
-        <p>Digite seu orçamento minimo (R$):</p>
-        <section class="checkGroup">
-          <label><input type="checkbox" name="tiposUso" value="1"> Trabalho</label>
-          <label><input type="checkbox" name="tiposUso" value="2"> Dia a dia</label>
-          <label><input type="checkbox" name="tiposUso" value="3"> Viagens</label>
-          <label><input type="checkbox" name="tiposUso" value="4"> Trabalho com carro</label>
+      <section class="input Tipo">
+        <p>Tipo de uso:</p>
+        <section class="check">
+          <label><input type="checkbox" name="tiposUso" value="1"> <span>Trabalho</span></label>
+          <label><input type="checkbox" name="tiposUso" value="2"><span>Dia a dia</span></label>
+          <label><input type="checkbox" name="tiposUso" value="3"><span>Viagens</span></label>
+          <label><input type="checkbox" name="tiposUso" value="4"><span>Trabalho com carro</span></label>
         </section>
       </section>
-      <section class="input">
+      <section class="input Prioridades">
         <p>Prioridades:</p>
-        <section class="checkbox-group">
-          <label><input type="checkbox" name="prioridades" value="1"> Economia de combustível</label>
-          <label><input type="checkbox" name="prioridades" value="2"> Baixa manutenção</label>
-          <label><input type="checkbox" name="prioridades" value="3"> Segurança</label>
-          <label><input type="checkbox" name="prioridades" value="4"> Design</label>
-          <label><input type="checkbox" name="prioridades" value="5"> Espaço interno</label>
-          <label><input type="checkbox" name="prioridades" value="6"> Facilidade de revenda</label>
-          <label><input type="checkbox" name="prioridades" value="7"> Desempenho</label>
+        <section class="check">
+          <label><input type="checkbox" name="prioridades" value="1"><span>Economia de combustível</span></label>
+          <label><input type="checkbox" name="prioridades" value="2"><span>Baixa manutenção</span></label>
+          <label><input type="checkbox" name="prioridades" value="3"><span>Segurança</span></label>
+          <label><input type="checkbox" name="prioridades" value="4"><span>Design</span></label>
+          <label><input type="checkbox" name="prioridades" value="5"><span>Espaço interno</span></label>
+          <label><input type="checkbox" name="prioridades" value="6"><span>Facilidade de revenda</span></label>
+          <label><input type="checkbox" name="prioridades" value="7"><span>Desempenho</span></label>
         </section>
       </section>
       <section class="input">
@@ -89,7 +89,7 @@
         <p>Confirme sua senha:</p>
         <input type="password" id="iptSenhaConfirma" placeholder="********">
       </section>
-      <section>
+      <section class="button">
         <button onclick="Cadastrar()">Cadastre-se</button>
         <a href="./login.html">Já possuí conta? <span>Faça login</span></a>
       </section>
