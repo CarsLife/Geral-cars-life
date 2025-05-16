@@ -5,19 +5,15 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>AquaTech | Cadastro</title>
-
-  <script src="./js/sessao.js"></script>
-
-  <link rel="stylesheet" href="./css/estilo.css" />
-  <link rel="icon" href="./assets/icon/favicon2.ico" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <title>CarsLife | Cadastro</title>
+  <!-- <script src="./js/sessao.js"></script> -->
+  <link rel="icon" href="./assets/logo.svg" />
   <link rel="stylesheet" href="./css/cadastro.css">
 </head>
 
-<body onload="listar()">
-  <!--header inicio-->
+<!-- <body onload="listar()"> -->
+
+<body>
   <header>
     <div class="navBar">
       <a href="./index.html"><img src="./assets/logo.svg" alt="" style="width: 5.69vw;"></a>
@@ -28,55 +24,79 @@
       </section>
     </div>
   </header>
-  <!--header fim-->
 
-  <div class="login">
-    <div class="alerta_erro">
-      <div class="card_erro" id="cardErro">
-        <span id="mensagem_erro"></span>
-      </div>
-    </div>
-    <div class="container">
-      <div class="card card-cadastro">
-        <h2>Bem-vindo!</h2>
-        <div class="formulario">
-          <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
-          <div class="campo">
-            <span>Código de ativação:</span>
-            <input id="codigo_input" type="text" placeholder="Insira aqui seu código" />
-          </div>
-          <div class="campo">
-            <span>Nome:</span>
-            <input id="nome_input" type="text" placeholder="Seu nome" />
-          </div>
-          <div class="campo">
-            <span>E-mail:</span>
-            <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
-          </div>
-          <div class="campo">
-            <span>Senha:</span>
-            <input id="senha_input" type="password" placeholder="******" />
-          </div>
-          <div class="campo">
-            <span>Confirmação da Senha:</span>
-            <input id="confirmacao_senha_input" type="password" placeholder="******" />
-          </div>
-          <button class="botao" onclick="cadastrar()">Cadastrar</button>
-        </div>
-        <div id="div_aguardar" class="loading-div">
-          <img src="./assets/circle-loading.gif" id="loading-gif" />
-        </div>
-
-        <div id="div_erros_login"></div>
-      </div>
+  <div class="container">
+    <h1>Seja bem vindo</h1>
+    <div class="form">
+      <section class="input">
+        <p>Digite seu nome:</p>
+        <input type="text" id="iptNome" placeholder="Nome Completo">
+      </section>
+      <section class="input">
+        <p>Digite seu e-mail:</p>
+        <input type="text" id="iptEmail" placeholder="example@example.com">
+      </section>
+      <section class="input">
+        <p>Digite sua data de nascimento:</p>
+        <input type="date" id="iptNasc">
+      </section>
+      <section class="input">
+        <p>Digite seu orçamento minimo (R$):</p>
+        <input type="number" id="iptMin" placeholder="R$: 999,99">
+      </section>
+      <section class="input">
+        <p>Digite seu orçamento máximo (R$):</p>
+        <input type="number" id="iptMax" placeholder="R$: 999.999,99">
+      </section>
+      <section class="input">
+        <p>Escolha o tipo de câmbio:</p>
+        <select id="iptCambio">
+          <option value="Tanto faz">Tanto faz</option>
+          <option value="Manual">Manual</option>
+          <option value="Automatico">Automático</option>
+        </select>
+      </section>
+      <section class="input">
+        <p>Digite o ano minimo do carro:</p>
+        <input type="number" id="iptMinAno" placeholder="2010">
+      </section>
+      <section class="input">
+        <p>Digite seu orçamento minimo (R$):</p>
+        <section class="checkGroup">
+          <label><input type="checkbox" name="tiposUso" value="1"> Trabalho</label>
+          <label><input type="checkbox" name="tiposUso" value="2"> Dia a dia</label>
+          <label><input type="checkbox" name="tiposUso" value="3"> Viagens</label>
+          <label><input type="checkbox" name="tiposUso" value="4"> Trabalho com carro</label>
+        </section>
+      </section>
+      <section class="input">
+        <p>Prioridades:</p>
+        <section class="checkbox-group">
+          <label><input type="checkbox" name="prioridades" value="1"> Economia de combustível</label>
+          <label><input type="checkbox" name="prioridades" value="2"> Baixa manutenção</label>
+          <label><input type="checkbox" name="prioridades" value="3"> Segurança</label>
+          <label><input type="checkbox" name="prioridades" value="4"> Design</label>
+          <label><input type="checkbox" name="prioridades" value="5"> Espaço interno</label>
+          <label><input type="checkbox" name="prioridades" value="6"> Facilidade de revenda</label>
+          <label><input type="checkbox" name="prioridades" value="7"> Desempenho</label>
+        </section>
+      </section>
+      <section class="input">
+        <p>Digite sua senha:</p>
+        <input type="password" id="iptSenha" placeholder="********">
+      </section>
+      <section class="input">
+        <p>Confirme sua senha:</p>
+        <input type="password" id="iptSenhaConfirma" placeholder="********">
+      </section>
+      <section>
+        <button onclick="Cadastrar()">Cadastre-se</button>
+        <a href="./login.html">Já possuí conta? <span>Faça login</span></a>
+      </section>
     </div>
   </div>
 
-  <!--footer inicio-->
-    <div class="footer">
+  <div class="footer">
     <div class="footerContent">
       <div class="secoes">
         <section class="sessao sobre">
@@ -86,23 +106,22 @@
         <section class="sessao atalhos">
           <h2>Atalhos</h2>
           <section class="redirecao">
-              <a href="./index.html">Início</a>
-              <a href="./sobre.html">Sobre</a>
-              <a href="./login.html">Login</a>
-              <a href="./cadastro.html">Cadastre-se</a>
-              <a href="https://www.webmotors.com.br">Comprar Carros</a>
+            <a href="./index.html">Início</a>
+            <a href="./sobre.html">Sobre</a>
+            <a href="./login.html">Login</a>
+            <a href="./cadastro.html">Cadastre-se</a>
+            <a href="https://www.webmotors.com.br">Comprar Carros</a>
           </section>
         </section>
       </div>
       <p class="direitos">© 2025 CarsLife. Todos os direitos reservados.</p>
     </div>
   </div>
-  <!--footer fim-->
 </body>
 
 </html>
 
-<script>
+<!-- <script>
 
   // Array para armazenar empresas cadastradas para validação de código de ativação
   let listaEmpresasCadastradas = [];
@@ -215,4 +234,4 @@
   function sumirMensagem() {
     cardErro.style.display = "none";
   }
-</script>
+</script> -->
