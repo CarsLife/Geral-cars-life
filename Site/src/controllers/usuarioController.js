@@ -51,12 +51,13 @@ function autenticar(req, res) {
 
 }
 
-function cadastrar(req, res) {
+function cadastrarUsuario(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    var fkEmpresa = req.body.idEmpresaVincularServer;
+    var nasc = req.body.nascServer;
+
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -65,12 +66,12 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } else if (fkEmpresa == undefined) {
-        res.status(400).send("Sua empresa a vincular está undefined!");
+    } else if (nasc == undefined) {
+        res.status(400).send("Sua data de nascimento está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, fkEmpresa)
+        usuarioModel.cadastrarUsuario(nome, email, senha, nasc)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -88,7 +89,107 @@ function cadastrar(req, res) {
     }
 }
 
+function cadastrarPreferencias(req, res) {
+    var orcamentoMin = req.body.orcamentoMinServer;
+    var orcamentoMax = req.body.orcamentoMaxServer;
+    var cambio = req.body.cambioServer;
+    var anoMin = req.body.anoMinServer
+
+    if (orcamentoMin == undefined) {
+        res.status(400).send("Seu orçamento mínimo está undefined!");
+    } else if (orcamentoMax == undefined) {
+        res.status(400).send("Seu orçamento maximo está undefined!");
+    } else if (cambio == undefined) {
+        res.status(400).send("Seu tipo de cambio está undefined!");
+    } else if (anoMin == undefined) {
+        res.status(400).send("Seu ano minimo está undefined!");
+    } else {
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.cadastrarPreferencias(orcamentoMin, orcamentoMax, cambio, anoMin)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function cadastrarTipo(req, res) {
+    var trabalho = req.body.trabalhoServer;
+    var dia = req.body.diaServer;
+    var viagem = req.body.viagemServer;
+    var trabalhoCar = req.body.trabalhoCarServer
+
+    if (trabalho == undefined || dia == undefined || viagem == undefined || trabalhoCar == undefined) {
+        res.status(400).send("Seu tipo de uso esta undefined!")
+    } else {
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.cadastrarTipo(trabalho, dia, viagem, trabalhoCar)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function cadastrarPrioridades(req, res) {
+    var economia = req.body.economiaServer;
+    var manutencao = req.body.manutencaoServer;
+    var seguranca = req.body.segurancaServer;
+    var design = req.body.designServer;
+    var espaco = req.body.espacoServer;
+    var revenda = req.body.revendaServer;
+    var desempenho = req.body.desempenhoServer
+
+    if (economia == undefined || manutencao == undefined || seguranca == undefined || design == undefined || espaco == undefined || revenda == undefined || desempenho == undefined) {
+        res.status(400).send("Suas prioridades estão undefined!")
+    } else {
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.cadastrarPrioridades(economia, manutencao, seguranca, design, espaco, revenda, desempenho)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrarUsuario,
+    cadastrarPreferencias,
+    cadastrarTipo,
+    cadastrarPrioridades
 }

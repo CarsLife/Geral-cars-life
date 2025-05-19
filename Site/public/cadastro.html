@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CarsLife | Cadastro</title>
-  <!-- <script src="./js/sessao.js"></script> -->
+  <script src="./js/sessao.js"></script>
   <link rel="icon" href="./assets/logo.svg" />
   <link rel="stylesheet" href="./css/cadastro.css">
 </head>
@@ -24,6 +24,12 @@
       </section>
     </div>
   </header>
+  <div id="erro" class="erro" style="display: none;">
+    <div id="cardErro" class="popup-erro">
+      <button onclick="Fechar()">X</button>
+      <p id="textoErro">Hello world</p>
+    </div>
+  </div>
 
   <div class="container">
     <h1>Seja bem vindo!</h1>
@@ -63,22 +69,25 @@
       <section class="input Tipo">
         <p>Tipo de uso:</p>
         <section class="check">
-          <label><input type="checkbox" name="tiposUso" value="1"> <span>Trabalho</span></label>
-          <label><input type="checkbox" name="tiposUso" value="2"><span>Dia a dia</span></label>
-          <label><input type="checkbox" name="tiposUso" value="3"><span>Viagens</span></label>
-          <label><input type="checkbox" name="tiposUso" value="4"><span>Trabalho com carro</span></label>
+          <label><input type="checkbox" name="tiposUso" id="chkTrabalho"> <span>Trabalho</span></label>
+          <label><input type="checkbox" name="tiposUso" id="chkDia"><span>Dia a dia</span></label>
+          <label><input type="checkbox" name="tiposUso" id="chkViagem"><span>Viagens</span></label>
+          <label><input type="checkbox" name="tiposUso" id="chkTrabalhoCar"><span>Trabalho com
+              carro</span></label>
         </section>
       </section>
       <section class="input Prioridades">
         <p>Prioridades:</p>
         <section class="check">
-          <label><input type="checkbox" name="prioridades" value="1"><span>Economia de combustível</span></label>
-          <label><input type="checkbox" name="prioridades" value="2"><span>Baixa manutenção</span></label>
-          <label><input type="checkbox" name="prioridades" value="3"><span>Segurança</span></label>
-          <label><input type="checkbox" name="prioridades" value="4"><span>Design</span></label>
-          <label><input type="checkbox" name="prioridades" value="5"><span>Espaço interno</span></label>
-          <label><input type="checkbox" name="prioridades" value="6"><span>Facilidade de revenda</span></label>
-          <label><input type="checkbox" name="prioridades" value="7"><span>Desempenho</span></label>
+          <label><input type="checkbox" name="prioridades" id="chkEconomia"><span>Economia de
+              combustível</span></label>
+          <label><input type="checkbox" name="prioridades" id="chkManutencao"><span>Baixa
+              manutenção</span></label>
+          <label><input type="checkbox" name="prioridades" id="chkSeguranca"><span>Segurança</span></label>
+          <label><input type="checkbox" name="prioridades" id="chkDesign"><span>Design</span></label>
+          <label><input type="checkbox" name="prioridades" id="chkEspaco"><span>Espaço interno</span></label>
+          <label><input type="checkbox" name="prioridades" id="chkRevenda"><span>Facilidade de revenda</span></label>
+          <label><input type="checkbox" name="prioridades" id="chkDesempenho"><span>Desempenho</span></label>
         </section>
       </section>
       <section class="input">
@@ -90,7 +99,7 @@
         <input type="password" id="iptSenhaConfirma" placeholder="********">
       </section>
       <section class="button">
-        <button onclick="Cadastrar()">Cadastre-se</button>
+        <button onclick="cadastrar()">Cadastre-se</button>
         <a href="./login.html">Já possuí conta? <span>Faça login</span></a>
       </section>
     </div>
@@ -121,56 +130,74 @@
 
 </html>
 
-<!-- <script>
+<script>
+  function Fechar() {
+    erro.style.display = "none";
+  }
 
-  // Array para armazenar empresas cadastradas para validação de código de ativação
-  let listaEmpresasCadastradas = [];
 
   function cadastrar() {
     // aguardar();
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-    var nomeVar = nome_input.value;
-    var emailVar = email_input.value;
-    var senhaVar = senha_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var codigoVar = codigo_input.value;
-    var idEmpresaVincular
+    const json = {
+      nomeVar: iptNome.value,
+      emailVar: iptEmail.value,
+      nascVar: iptNasc.value,
+      senhaVar: iptSenha.value,
+      confirmacaoSenhaVar: iptSenhaConfirma.value,
+      orcamentoMinVar: iptMin.value,
+      orcamentoMaxVar: iptMax.value,
+      cambioVar: iptCambio.value,
+      anoMinVar: iptMinAno.value,
 
+      // Recuperando valores de checkboxes (true ou false)
+      trabalhoVar: chkTrabalho.checked,
+      diaVar: chkDia.checked,
+      viagemVar: chkViagem.checked,
+      trabalhoCarVar: chkTrabalhoCar.checked,
+      economiaVar: chkEconomia.checked,
+      manutencaoVar: chkManutencao.checked,
+      segurancaVar: chkSeguranca.checked,
+      designVar: chkDesign.checked,
+      espacoVar: chkEspaco.checked,
+      revendaVar: chkRevenda.checked,
+      desempenhoVar: chkDesempenho.checked
+    };
+
+    // Função para tratar os dados vindos das checkboxes
+    ceckBox(json);
     // Verificando se há algum campo em branco
-    if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
-      codigoVar == ""
-    ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
-
-      finalizarAguardar();
+    if (json.nomeVar == "" || json.emailVar == "" || json.nascVar == "" || json.senhaVar == "" || json.confirmacaoSenhaVar == "" || json.orcamentoMinVar == "" || json.orcamentoMaxVar == "" || json.cambioVar == "" || json.anoMinVar == "" || json.trabalhoVar == "" && json.diaVar == "" && json.viagemVar == "" && json.trabalhoCarVar == "" || json.economiaVar == "" && json.manutencaoVar == "" && json.segurancaVar == "" && json.designVar == "" && json.espacoVar == "" && json.revendaVar == "" && json.desempenhoVar == "") {
+      erro.style.display = "flex";
+      textoErro.innerHTML = `Algum dos campos em branco`;
+      setInterval(sumirMensagem, 5000);
       return false;
-    } else {
+    } else if (!json.emailVar.includes("@") || !json.emailVar.includes(".")) {
+      erro.style.display = "flex";
+      textoErro.innerHTML = "E-mail inválido";
+      // finalizarAguardar();
+      setInterval(sumirMensagem, 5000);
+      return false;
+    }
+
+    else if (json.senhaVar != json.confirmacaoSenhaVar) {
+      erro.style.display = "flex";
+      textoErro.innerHTML = "Senha diferente";
+      // finalizarAguardar();
+      setInterval(sumirMensagem, 5000);
+      return false;
+    }
+
+    else {
+      erro.style.display = "flex";
+      textoErro.innerHTML = "Cadastro realizado com sucesso";
       setInterval(sumirMensagem, 5000);
     }
 
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
-        console.log("Código de ativação válido.");
-        break;
-      } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-        finalizarAguardar();
-      }
-    }
-
     // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
+    fetch("/usuarios/cadastrarUsuario", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -178,23 +205,69 @@
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar,
-        idEmpresaVincularServer: idEmpresaVincular
+        nomeServer: json.nomeVar,
+        emailServer: json.emailVar,
+        nascServer: json.nascVar,
+        senhaServer: json.senhaVar,
+
+
       }),
     })
-      .then(function (resposta) {
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrarPreferencias", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        orcamentoMinServer: json.orcamentoMinVar,
+        orcamentoMaxServer: json.orcamentoMaxVar,
+        cambioServer: json.cambioVar,
+        anoMinServer: json.anoMinVar
+      }),
+    })
+    fetch("/usuarios/cadastrarTipo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        trabalhoServer: json.trabalhoVar,
+        diaServer: json.diaVar,
+        viagemServer: json.viagemVar,
+        trabalhoCarServer: json.trabalhoCarVar
+      }),
+    })
+    fetch("/usuarios/cadastrarPrioridades", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        economiaServer: json.economiaVar,
+        manutencaoServer: json.manutencaoVar,
+        segurancaServer: json.segurancaVar,
+        designServer: json.designVar,
+        espacoServer: json.espacoVar,
+        revendaServer: json.revendaVar,
+        desempenhoServer: json.desempenhoVar
+      }),
+    }).then(function (resposta) {
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+          erro.style.display = "flex";
+          textoErro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
           setTimeout(() => {
-            window.location = "login.html";
+            window.location = "./login.html";
           }, "2000");
 
           limparFormulario();
@@ -208,30 +281,11 @@
         finalizarAguardar();
       });
 
+
     return false;
   }
 
-  // Listando empresas cadastradas
-  function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresasCadastradas.push(empresa);
-
-            console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-          });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-  }
-
   function sumirMensagem() {
-    cardErro.style.display = "none";
+    erro.style.display = "none";
   }
-</script> -->
+</script>

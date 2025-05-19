@@ -46,7 +46,7 @@
 .secoes .atalhos .redirecao {
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: center;
 }
 
 .secoes .atalhos .redirecao a {

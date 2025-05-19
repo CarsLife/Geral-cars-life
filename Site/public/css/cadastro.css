@@ -126,12 +126,12 @@ body {
   transition-duration: 0.2s;
 }
 
-.container .form .input .check input[type="checkbox"]:hover + span{
+.container .form .input .check input[type="checkbox"]:hover+span {
   color: var(--placeHolder);
   transition-duration: .2s;
 }
 
-.container .form .input .check input[type="checkbox"]:hover{
+.container .form .input .check input[type="checkbox"]:hover {
   border-color: var(--placeHolder);
   transition-duration: .2s;
 }
@@ -152,7 +152,7 @@ body {
   transition-duration: .2s;
 }
 
-.container .form .input .check input[type="checkbox"]:checked + span {
+.container .form .input .check input[type="checkbox"]:checked+span {
   color: var(--placeHolder);
   transition-duration: .2s;
 }
@@ -168,19 +168,19 @@ body {
   transition-duration: .2s;
 }
 
-.container .form .input .check input[type="checkbox"]:checked:hover + span {
+.container .form .input .check input[type="checkbox"]:checked:hover+span {
   color: var(--textColor);
   transition-duration: .2s;
 }
 
-.container .button{
+.container .button {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.container .button button{
+.container .button button {
   width: 30vh;
   height: 6.84vh;
   font-size: 2.22vw;
@@ -192,7 +192,7 @@ body {
   transition-duration: .2s;
 }
 
-.container .button button:hover{
+.container .button button:hover {
   transition-duration: .2s;
   color: var(--darkRed);
   background-color: var(--textColor);
@@ -200,18 +200,74 @@ body {
   cursor: pointer;
 }
 
-.container .button a{
+.container .button a {
   text-decoration: none;
   color: var(--textColor);
   font-size: 0.9vw;
 }
 
-.container .button a span{
+.container .button a span {
   color: var(--link);
   transition-duration: .2s;
 }
 
-.container .button a span:hover{
+.container .button a span:hover {
   text-decoration: underline;
   transition-duration: .2s;
+}
+
+.erro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.4);
+  /* fundo escurecido */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 10000;
+  backdrop-filter: blur(4px);
+}
+
+.erro .popup-erro {
+  background-color: var(--darkRed);
+  width: 40vw;
+  padding: 2.5vw;
+  border-radius: 2vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 0 0 1.5vw rgba(0, 0, 0, 0.3);
+  animation: fadeInScale 0.4s ease;
+  position: relative;
+}
+
+.erro .popup-erro p {
+  color: var(--textColor);
+  font-size: 1.2vw;
+  text-align: center;
+  margin-top: 2vh;
+}
+
+.erro .popup-erro button {
+  position: absolute;
+  top: 1vw;
+  right: 1vw;
+  border: none;
+  background: none;
+  color: var(--textColor);
+  font-size: 1.5vw;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.erro .popup-erro button:hover {
+  transform: scale(1.2);
 }
