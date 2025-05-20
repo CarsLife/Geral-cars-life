@@ -165,9 +165,9 @@
       revendaVar: chkRevenda.checked,
       desempenhoVar: chkDesempenho.checked
     };
-
     // Função para tratar os dados vindos das checkboxes
     ceckBox(json);
+
     // Verificando se há algum campo em branco
     if (json.nomeVar == "" || json.emailVar == "" || json.nascVar == "" || json.senhaVar == "" || json.confirmacaoSenhaVar == "" || json.orcamentoMinVar == "" || json.orcamentoMaxVar == "" || json.cambioVar == "" || json.anoMinVar == "" || json.trabalhoVar == "" && json.diaVar == "" && json.viagemVar == "" && json.trabalhoCarVar == "" || json.economiaVar == "" && json.manutencaoVar == "" && json.segurancaVar == "" && json.designVar == "" && json.espacoVar == "" && json.revendaVar == "" && json.desempenhoVar == "") {
       erro.style.display = "flex";
@@ -180,9 +180,7 @@
       // finalizarAguardar();
       setInterval(sumirMensagem, 5000);
       return false;
-    }
-
-    else if (json.senhaVar != json.confirmacaoSenhaVar) {
+    } else if (json.senhaVar != json.confirmacaoSenhaVar) {
       erro.style.display = "flex";
       textoErro.innerHTML = "Senha diferente";
       // finalizarAguardar();
@@ -206,15 +204,18 @@
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
         nomeServer: json.nomeVar,
-        emailServer: json.emailVar,
         nascServer: json.nascVar,
+        emailServer: json.emailVar,
         senhaServer: json.senhaVar,
 
 
       }),
+    }).then(function (resposta) {
+      if (resposta.ok) {
+        console.log(ResultSetHeader.insertId)
+      }
     })
 
-    // Enviando o valor da nova input
     fetch("/usuarios/cadastrarPreferencias", {
       method: "POST",
       headers: {
@@ -226,7 +227,9 @@
         orcamentoMinServer: json.orcamentoMinVar,
         orcamentoMaxServer: json.orcamentoMaxVar,
         cambioServer: json.cambioVar,
-        anoMinServer: json.anoMinVar
+        anoMinServer: json.anoMinVar,
+        emailServer: json.emailVar,
+        senhaServer: json.senhaVar,
       }),
     })
     fetch("/usuarios/cadastrarTipo", {
@@ -240,7 +243,9 @@
         trabalhoServer: json.trabalhoVar,
         diaServer: json.diaVar,
         viagemServer: json.viagemVar,
-        trabalhoCarServer: json.trabalhoCarVar
+        trabalhoCarServer: json.trabalhoCarVar,
+        emailServer: json.emailVar,
+        senhaServer: json.senhaVar,
       }),
     })
     fetch("/usuarios/cadastrarPrioridades", {
@@ -257,33 +262,35 @@
         designServer: json.designVar,
         espacoServer: json.espacoVar,
         revendaServer: json.revendaVar,
-        desempenhoServer: json.desempenhoVar
+        desempenhoServer: json.desempenhoVar,
+        emailServer: json.emailVar,
+        senhaServer: json.senhaVar,
       }),
     }).then(function (resposta) {
-        console.log("resposta: ", resposta);
+      console.log("resposta: ", resposta);
 
-        if (resposta.ok) {
-          erro.style.display = "flex";
-          textoErro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+      if (resposta.ok) {
+        erro.style.display = "flex";
+        textoErro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
-          setTimeout(() => {
-            window.location = "./login.html";
-          }, "2000");
+        setTimeout(() => {
+          window.location = "./login.html";
+        }, "2000");
 
-          limparFormulario();
-          finalizarAguardar();
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
-      })
+        limparFormulario();
+        finalizarAguardar();
+      } else {
+        throw "Houve um erro ao tentar realizar o cadastro!";
+      }
+    })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
         finalizarAguardar();
       });
 
-
     return false;
   }
+
 
   function sumirMensagem() {
     erro.style.display = "none";

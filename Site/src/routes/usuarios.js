@@ -20,7 +20,6 @@ router.post("/cadastrarPrioridades", function (req, res) {
     usuarioController.cadastrarPrioridades(req, res);
 });
 
-
 router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });

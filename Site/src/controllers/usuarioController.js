@@ -80,7 +80,7 @@ function cadastrarUsuario(req, res) {
                 function (erro) {
                     console.log(erro);
                     console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        "\nHouve um erro ao realizar o cadastroUsuario! Erro: ",
                         erro.sqlMessage
                     );
                     res.status(500).json(erro.sqlMessage);
@@ -93,7 +93,9 @@ function cadastrarPreferencias(req, res) {
     var orcamentoMin = req.body.orcamentoMinServer;
     var orcamentoMax = req.body.orcamentoMaxServer;
     var cambio = req.body.cambioServer;
-    var anoMin = req.body.anoMinServer
+    var anoMin = req.body.anoMinServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer
 
     if (orcamentoMin == undefined) {
         res.status(400).send("Seu orçamento mínimo está undefined!");
@@ -103,10 +105,12 @@ function cadastrarPreferencias(req, res) {
         res.status(400).send("Seu tipo de cambio está undefined!");
     } else if (anoMin == undefined) {
         res.status(400).send("Seu ano minimo está undefined!");
+    } else if (email == undefined || senha == undefined) {
+        res.status(400).send("Seu email ou senha está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrarPreferencias(orcamentoMin, orcamentoMax, cambio, anoMin)
+        usuarioModel.cadastrarPreferencias(orcamentoMin, orcamentoMax, cambio, anoMin, email, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -115,7 +119,7 @@ function cadastrarPreferencias(req, res) {
                 function (erro) {
                     console.log(erro);
                     console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        "\nHouve um erro ao realizar o cadastroPreferencias! Erro: ",
                         erro.sqlMessage
                     );
                     res.status(500).json(erro.sqlMessage);
@@ -128,14 +132,18 @@ function cadastrarTipo(req, res) {
     var trabalho = req.body.trabalhoServer;
     var dia = req.body.diaServer;
     var viagem = req.body.viagemServer;
-    var trabalhoCar = req.body.trabalhoCarServer
+    var trabalhoCar = req.body.trabalhoCarServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer
 
     if (trabalho == undefined || dia == undefined || viagem == undefined || trabalhoCar == undefined) {
         res.status(400).send("Seu tipo de uso esta undefined!")
+    } else if (email == undefined || senha == undefined) {
+        res.status(400).send("Seu email ou senha está undefined!")
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrarTipo(trabalho, dia, viagem, trabalhoCar)
+        usuarioModel.cadastrarTipo(trabalho, dia, viagem, trabalhoCar, email, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -144,7 +152,7 @@ function cadastrarTipo(req, res) {
                 function (erro) {
                     console.log(erro);
                     console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        "\nHouve um erro ao realizar o cadastroTipo! Erro: ",
                         erro.sqlMessage
                     );
                     res.status(500).json(erro.sqlMessage);
@@ -160,14 +168,18 @@ function cadastrarPrioridades(req, res) {
     var design = req.body.designServer;
     var espaco = req.body.espacoServer;
     var revenda = req.body.revendaServer;
-    var desempenho = req.body.desempenhoServer
+    var desempenho = req.body.desempenhoServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer
 
     if (economia == undefined || manutencao == undefined || seguranca == undefined || design == undefined || espaco == undefined || revenda == undefined || desempenho == undefined) {
         res.status(400).send("Suas prioridades estão undefined!")
+    } else if (email == undefined || senha == undefined) {
+        res.status(400).send("Seu email ou senha esta undefined!")
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrarPrioridades(economia, manutencao, seguranca, design, espaco, revenda, desempenho)
+        usuarioModel.cadastrarPrioridades(economia, manutencao, seguranca, design, espaco, revenda, desempenho, email, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -176,7 +188,7 @@ function cadastrarPrioridades(req, res) {
                 function (erro) {
                     console.log(erro);
                     console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        "\nHouve um erro ao realizar o cadastroPrioridades! Erro: ",
                         erro.sqlMessage
                     );
                     res.status(500).json(erro.sqlMessage);
@@ -184,6 +196,7 @@ function cadastrarPrioridades(req, res) {
             );
     }
 }
+
 
 
 module.exports = {

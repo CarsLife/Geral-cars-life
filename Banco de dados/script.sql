@@ -1,65 +1,47 @@
 CREATE DATABASE carsLife;
 USE carsLife;
- 
+
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100),
     email VARCHAR(100) UNIQUE,
+    senha VARCHAR(255),
     dtNasc DATE
 );
 
-CREATE TABLE preferenciasUsuario (
+CREATE TABLE preferencias (
     id INT AUTO_INCREMENT PRIMARY KEY,
     fkUsuario INT,
     orcamentoMin DECIMAL(10,2),
     orcamentoMax DECIMAL(10,2),
     tipoCambio VARCHAR(20) CHECK (tipoCambio IN ('Manual', 'Automatico', 'Tanto faz')),
-    anoMinimo INT,    
-    CONSTRAINT FOREIGN KEY (fkUsuario) REFERENCES usuarios(id)
+    anoMinimo INT,
+    CONSTRAINT fkUsuarioPref FOREIGN KEY (fkUsuario) REFERENCES usuarios(id)
 );
 
-CREATE TABLE tiposUso (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    descricao VARCHAR(100)
-);
-
-INSERT INTO tiposUso (descricao) 
-VALUES	('Trabalho'),
-		('Dia a dia'),
-		('Viagens'),
-		('Trabalho com carro (Uber, entregas, etc.)');
-
-CREATE TABLE preferenciasTipoUso (
+CREATE TABLE tipoUso (
     id INT AUTO_INCREMENT PRIMARY KEY,
     fkUsuario INT,
-    fkTipoUso INT,
-    CONSTRAINT FOREIGN KEY (fkUsuario) REFERENCES usuarios(id),
-    CONSTRAINT FOREIGN KEY (fkTipoUso) REFERENCES tiposUso(id)
+    trabalho INT,
+    diaADia INT,
+    viagem INT,
+    trabalhoComCarro INT,
+    CONSTRAINT fkUsuarioTipoUso FOREIGN KEY (fkUsuario) REFERENCES usuarios(id)
 );
 
 CREATE TABLE prioridades (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    descricao VARCHAR(100)
-);
-
-INSERT INTO prioridades (descricao) 
-VALUES	('Economia de combustível'),
-		('Baixa manutenção'),
-		('Segurança'),
-		('Design'),
-		('Espaço interno'),
-		('Facilidade de revenda'),
-		('Desempenho');
-        
-CREATE TABLE prioridadesUsuario (
-    id INT AUTO_INCREMENT PRIMARY KEY,
     fkUsuario INT,
-    fkPrioridade INT,
-    CONSTRAINT fkUsuarioPrioridade FOREIGN KEY (fkUsuario) REFERENCES usuarios(id),
-    CONSTRAINT fkPrioridade FOREIGN KEY (fkPrioridade) REFERENCES prioridades(id)
+    economia INT,
+    manutencao INT,
+    seguranca INT,
+    design INT,
+    espaco INT,
+    revenda INT,
+    desempenho INT,
+    CONSTRAINT fkUsuarioPrioridade FOREIGN KEY (fkUsuario) REFERENCES usuarios(id)
 );
 
--- Carros
 CREATE TABLE carros (
     id INT AUTO_INCREMENT PRIMARY KEY,
     marca VARCHAR(50),
@@ -73,3 +55,8 @@ CREATE TABLE carros (
     consumoEstrada DECIMAL(5,2),
     potenciaCV INT
 );
+
+select * from usuarios u
+inner join preferencias pre on pre.fkUsuario = u.id
+inner join tipoUso tu on tu.fkUsuario = u.id
+inner join prioridades pri on pri.fkUsuario = u.id;
