@@ -31,7 +31,7 @@ function cadastrarPreferencias(orcamentoMin, orcamentoMax, cambio, anoMin, email
     // Executando todos os INSERTs em sequência
     const instrucaoSql = `
     INSERT INTO preferencias (fkUsuario, orcamentoMin, orcamentoMax, tipoCambio, anoMinimo)
-    VALUES ((select max(id) from usuarios where email = '${email}' and senha = '${senha}'), '${orcamentoMin}', '${orcamentoMax}', '${cambio}', '${anoMin}');
+    VALUES ((select id from usuarios where email = '${email}' and senha = '${senha}'), '${orcamentoMin}', '${orcamentoMax}', '${cambio}', '${anoMin}');
     `;
 
     console.log("Executando a instrução SQL:\n" + instrucaoSql);
@@ -44,7 +44,7 @@ function cadastrarTipo(trabalho, dia, viagem, trabalhoCar, email, senha) {
 
     const instrucaoSql = `
         INSERT INTO tipoUso (fkUsuario, trabalho, diaADia, viagem, trabalhoComCarro)
-        VALUES ((select max(id) from usuarios where email = '${email}' and senha = '${senha}'), '${trabalho}', '${dia}', '${viagem}', '${trabalhoCar}');
+        VALUES ((select id from usuarios where email = '${email}' and senha = '${senha}'), '${trabalho}', '${dia}', '${viagem}', '${trabalhoCar}');
     `;
 
     console.log("Executando a instrução SQL:\n" + instrucaoSql);
@@ -56,7 +56,7 @@ function cadastrarPrioridades(economia, manutencao, seguranca, design, espaco, r
 
     const instrucaoSql = `
         INSERT INTO prioridades (fkUsuario, economia, manutencao, seguranca, design, espaco, revenda, desempenho)
-        VALUES ((select max(id) from usuarios where email = '${email}' and senha = '${senha}'), '${economia}', '${manutencao}', '${seguranca}', '${design}', '${espaco}', '${revenda}', '${desempenho}');
+        VALUES ((select id from usuarios where email = '${email}' and senha = '${senha}'), '${economia}', '${manutencao}', '${seguranca}', '${design}', '${espaco}', '${revenda}', '${desempenho}');
     `;
 
     console.log("Executando a instrução SQL:\n" + instrucaoSql);
