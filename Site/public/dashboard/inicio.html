@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cars Life | Dashboard</title>
+
+    <link rel="shortcut icon" href="../assets/logo.svg" type="image/x-icon">
+    <link rel="stylesheet" href="../css/dashboards.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/sessao.js"></script>
+    <script src="../js/alerta.js"></script>
+</head>
+
+<body onload="carregar()">
+    <header class="navVertical">
+        <a href="../index.html"><img src="../assets/logoDash.svg" alt=""></a>
+        <section class="buttons">
+            <a class="selection" href="./inicio.html">Início</a>
+            <a href="./recomendados.html">Carros Recomendados</a>
+            <a href="./Informacoes.html">Minhas Informações</a>
+        </section>
+        <button onclick="Sair()">Sair</button>
+    </header>
+    <div class="content">
+        <div id="div_superior">
+            <h2>Bem vindo de volta, <span id="nome">NOME</span></h2>
+            <div class="cardSuperior">
+                <div class="orcamento superior">
+                    <h3>Orçamento</h3>
+                    <section class="informacao">
+                        <p id="prefMin">R$ 50.000 -</p>
+                        <p id="prefMax">R$70.000</p>
+                    </section>
+                </div>
+
+                <div class="cambio superior">
+                    <h3>Câmbio</h3>
+                    <section class="informacao">
+                        <p id="prefCambio">Manual</p>
+                    </section>
+                </div>
+                <div class="anoMin superior">
+                    <h3>Ano Minimo</h3>
+                    <section class="informacao">
+                        <p>2015</p>
+                    </section>
+                </div>
+                <div class="prioridade superior">
+                    <h3>Prioridade(s)</h3>
+                    <section class="informacao">
+                        <p>Espaço</p>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="cardGrafico">
+            <div class="card azul">
+                <select name="" id="carro1">
+                    <option value="1">Golf 2015</option>
+                    <option value="2">Onix 2018</option>
+                </select>
+                <section class="infoPrin">
+                    <p>Potencia: <span>170cv</span></p>
+                    <p>Espaço: <span>4 portas</span></p>
+                    <p>Consumo: <span>7Km/l</p></span></p>
+                    <p>Preço: <span>R$ 77.771</p></span></p>
+                    <p>Ano: <span>2015</p></span></p>
+                </section>
+                <section class="info azul">
+                    <p>Marca: <span>Volkswagen</p></span></p>
+                    <p>Câmbio: <span>Manual</p></span></p>
+                    <p>Combustivel: <span>Flex</p></span></p>
+                    <p>Consumo Cidade: <span>4km/l</p></span></p>
+                    <p>Consumo Estrada: <span>10km/l</p></span></p>
+                </section>
+            </div>
+
+            <canvas id="radarChart"></canvas>
+            <div class="card amarelo">
+                <select name="" id="carro2">
+                    <option value="1">Onix 2018</option>
+                    <option value="2">Golf 2015</option>
+                </select>
+                <section class="infoPrin">
+                    <p>Potencia: <span>77cv</span></p>
+                    <p>Espaço: <span>4 portas</span></p>
+                    <p>Consumo: <span>16Km/l</span></p>
+                    <p>Preço: <span>R$ 58.100</span></p>
+                    <p>Ano: <span>2018</span></p>
+                </section>
+                <section class="info amarelo">
+                    <p>Marca: <span>Chefrolet</span></p>
+                    <p>Câmbio: <span>Manual</span></p>
+                    <p>Combustivel: <span>Flex</span></p>
+                    <p>Consumo Cidade: <span>14km/l</span></p>
+                    <p>Consumo Estrada: <span>18km/l</span></p>
+                </section>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+
+<script>
+    const data = {
+        labels: ["Ano", "Preço", "Consumo", "Espaço", "Potência"],
+        datasets: [
+            {
+                label: "Onix",
+                data: [100.0, 100.0, 100.0, 20.0, 100.0],
+                backgroundColor: "rgba(56, 164, 232, 0.5)"
+            },
+            {
+                label: "Golf",
+                data: [50.0, 58.11, 24.0, 100.0, 100.0],
+                backgroundColor: "rgba(69, 68, 1, 0.5)"
+            }
+        ]
+    };
+
+    const config = {
+        type: 'radar',
+        data: data,
+        options: {
+            responsive: true,
+            scales: {
+                r: {
+                    angleLines: { color: '#000' },
+                    grid: { color: '#000' },
+                    pointLabels: {
+                        color: 'white',
+                        font: {
+                            family: 'montserrat',
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    },
+                    ticks: {
+                        color: '#fff',
+                        stepSize: 20,
+                        backdropColor: 'transparent',
+                        max: 100
+                    },
+                    backgroundColor: "#1B1818"
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#fff'
+                    }
+                }
+            }
+        }
+    };
+
+    new Chart(document.getElementById('radarChart'), config);
+
+    function Sair() {
+        sessionStorage.clear;
+        window.location = "../index.html"
+    }
+
+    function carregar() {
+        const prioridadesList = [];
+        if (sessionStorage.ECO_PREFERENCIAS == 1) prioridadesList.push("Ecônomia");
+        if (sessionStorage.MANUTENCAO_PREFERENCIAS == 1) prioridadesList.push("Manutenção");
+        if (sessionStorage.SEGURANCA_PREFERENCIAS == 1) prioridadesList.push("Segurança");
+        if (sessionStorage.DESIGN_PREFERENCIAS == 1) prioridadesList.push("Design");
+        if (sessionStorage.ESPACO_PREFERENCIAS == 1) prioridadesList.push("Espaço");
+        if (sessionStorage.REVENDA_PREFERENCIAS == 1) prioridadesList.push("Facilidade");
+        if (sessionStorage.DESEMPENHO_PREFERENCIAS == 1) prioridadesList.push("Desempenho");
+
+        let prioridadesText = `${prioridadesList[0]}`;
+        for(let i = 1; i < prioridadesList.length; i++){
+            prioridadesText += `, ${prioridadesList[i]}`
+        }
+        console.log(sessionStorage)
+        div_superior.innerHTML = `
+        <h2>Bem vindo de volta, <span id="nome">${sessionStorage.NOME_USUARIO}</span></h2>
+            <div class="cardSuperior">
+                <div class="orcamento superior">
+                    <h3>Orçamento</h3>
+                    <section class="informacao">
+                        <p id="prefMin">R$ ${sessionStorage.ORCMIN_PREFERENCIAS} -</p>
+                        <p id="prefMax">R$ ${sessionStorage.ORCMAX_PREFERENCIAS}</p>
+                    </section>
+                </div>
+
+                <div class="cambio superior">
+                    <h3>Câmbio</h3>
+                    <section class="informacao">
+                        <p id="prefCambio">${sessionStorage.CAMBIO_PREFERENCIAS}</p>
+                    </section>
+                </div>
+                <div class="anoMin superior">
+                    <h3>Ano Minimo</h3>
+                    <section class="informacao">
+                        <p>${sessionStorage.ANOMIN_PREFERENCIAS}</p>
+                    </section>
+                </div>
+                <div class="prioridade superior">
+                    <h3>Prioridade(s)</h3>
+                    <section class="informacao">
+                        <p>${prioridadesText}</p>
+                    </section>
+                </div>
+            </div>
+        `;
+
+
+    }
+</script>

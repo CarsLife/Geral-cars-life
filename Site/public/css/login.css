@@ -119,3 +119,59 @@ body {
   text-decoration: underline;
   transition-duration: .2s;
 }
+
+.erro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.4);
+  /* fundo escurecido */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 10000;
+  backdrop-filter: blur(4px);
+}
+
+.erro .popup-erro {
+  background-color: var(--darkRed);
+  width: 40vw;
+  padding: 2.5vw;
+  border-radius: 2vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 0 0 1.5vw rgba(0, 0, 0, 0.3);
+  animation: fadeInScale 0.4s ease;
+  position: relative;
+}
+
+.erro .popup-erro p {
+  color: var(--textColor);
+  font-size: 1.2vw;
+  text-align: center;
+  margin-top: 2vh;
+}
+
+.erro .popup-erro button {
+  position: absolute;
+  top: 1vw;
+  right: 1vw;
+  border: none;
+  background: none;
+  color: var(--textColor);
+  font-size: 1.5vw;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.erro .popup-erro button:hover {
+  transform: scale(1.2);
+}

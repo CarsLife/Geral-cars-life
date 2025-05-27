@@ -1,5 +1,5 @@
 var usuarioModel = require("../models/usuarioModel");
-var aquarioModel = require("../models/aquarioModel");
+var preferenciasModel = require("../models/preferenciasModel");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -8,7 +8,7 @@ function autenticar(req, res) {
     if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
-        res.status(400).send("Sua senha está indefinida!");
+        res.status(400).send("Sua senha está undefined!");
     } else {
 
         usuarioModel.autenticar(email, senha)
@@ -18,20 +18,40 @@ function autenticar(req, res) {
                     console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
 
                     if (resultadoAutenticar.length == 1) {
-                        console.log(resultadoAutenticar);
+                        console.log(resultadoAutenticar + " Esse é o resultado autenticar");
 
-                        aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].empresaId)
-                            .then((resultadoAquarios) => {
-                                if (resultadoAquarios.length > 0) {
+                        preferenciasModel.buscarPreferenciasPorId(resultadoAutenticar[0].id)
+                            .then((resultadoPreferencias) => {
+
+                                console.log(`\nResultados encontrados: ${resultadoPreferencias.length}`);
+                                console.log(`Resultados: ${JSON.stringify(resultadoPreferencias)}`);
+
+                                if (resultadoPreferencias.length > 0) {
                                     res.json({
                                         id: resultadoAutenticar[0].id,
-                                        email: resultadoAutenticar[0].email,
                                         nome: resultadoAutenticar[0].nome,
+                                        email: resultadoAutenticar[0].email,
                                         senha: resultadoAutenticar[0].senha,
-                                        aquarios: resultadoAquarios
+                                        nascimento: resultadoAutenticar[0].dtNasc,
+                                        cadastro: resultadoAutenticar[0].dtCadastro,
+                                        orcMin: resultadoPreferencias[0].orcMin,
+                                        orcMax: resultadoPreferencias[0].orcMax,
+                                        cambio: resultadoPreferencias[0].cambio,
+                                        anoMin: resultadoPreferencias[0].anoMin,
+                                        trabalho: resultadoPreferencias[0].trabalho,
+                                        diadia: resultadoPreferencias[0].diadia,
+                                        viagem: resultadoPreferencias[0].viagem,
+                                        trabalhoCar: resultadoPreferencias[0].trabalhoCar,
+                                        eco: resultadoPreferencias[0].eco,
+                                        manutencao: resultadoPreferencias[0].manutencao,
+                                        seguranca: resultadoPreferencias[0].seguranca,
+                                        design: resultadoPreferencias[0].design,
+                                        espaco: resultadoPreferencias[0].espaco,
+                                        revenda: resultadoPreferencias[0].revenda,
+                                        desempenho: resultadoPreferencias[0].desempenho
                                     });
                                 } else {
-                                    res.status(204).json({ aquarios: [] });
+                                    res.status(204).json({ preferencias: [] });
                                 }
                             })
                     } else if (resultadoAutenticar.length == 0) {

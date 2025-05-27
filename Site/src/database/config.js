@@ -24,7 +24,7 @@ function executar(instrucao) {
             if (erro) {
                 reject(erro);
             }
-            console.log(resultados);
+            console.log("estou aqui", resultados);
             resolve(resultados);
         });
         conexao.on('error', function (erro) {

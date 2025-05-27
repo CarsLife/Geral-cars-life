@@ -12,6 +12,10 @@ function validarSessao() {
   }
 }
 
+function Fechar() {
+  erro.style.display = "none";
+}
+
 function limparSessao() {
   sessionStorage.clear();
   window.location = "../login.html";
@@ -35,27 +39,27 @@ function finalizarAguardar(texto) {
 }
 
 function ceckBox(json) {
-    if (json.trabalhoVar == true) json.trabalhoVar = 1;
-    else json.trabalhoVar = 0;
-    if (json.diaVar == true) json.diaVar = 1;
-    else json.diaVar = 0;
-    if (json.viagemVar == true) json.viagemVar = 1;
-    else json.viagemVar = 0;
-    if (json.trabalhoCarVar == true) json.trabalhoCarVar = 1;
-    else json.trabalhoCarVar = 0;
+  if (json.trabalhoVar == true) json.trabalhoVar = 1;
+  else json.trabalhoVar = 0;
+  if (json.diaVar == true) json.diaVar = 1;
+  else json.diaVar = 0;
+  if (json.viagemVar == true) json.viagemVar = 1;
+  else json.viagemVar = 0;
+  if (json.trabalhoCarVar == true) json.trabalhoCarVar = 1;
+  else json.trabalhoCarVar = 0;
 
-    if (json.economiaVar == true) json.economiaVar = 1;
-    else json.economiaVar = 0;
-    if (json.manutencaoVar == true) json.manutencaoVar = 1;
-    else json.manutencaoVar = 0;
-    if (json.segurancaVar == true) json.segurancaVar = 1;
-    else json.segurancaVar = 0;
-    if (json.designVar == true) json.designVar = 1;
-    else json.designVar = 0;
-    if (json.espacoVar == true) json.espacoVar = 1;
-    else json.espacoVar = 0;
-    if (json.revendaVar == true) json.revendaVar = 1;
-    else json.revendaVar = 0;
-    if (json.desempenhoVar == true) json.desempenhoVar = 1;
-    else json.desempenhoVar = 0;
-  }
+  if (json.economiaVar == true) json.economiaVar = 1;
+  else json.economiaVar = 0;
+  if (json.manutencaoVar == true) json.manutencaoVar = 1;
+  else json.manutencaoVar = 0;
+  if (json.segurancaVar == true) json.segurancaVar = 1;
+  else json.segurancaVar = 0;
+  if (json.designVar == true) json.designVar = 1;
+  else json.designVar = 0;
+  if (json.espacoVar == true) json.espacoVar = 1;
+  else json.espacoVar = 0;
+  if (json.revendaVar == true) json.revendaVar = 1;
+  else json.revendaVar = 0;
+  if (json.desempenhoVar == true) json.desempenhoVar = 1;
+  else json.desempenhoVar = 0;
+}

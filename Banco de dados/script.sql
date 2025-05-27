@@ -6,12 +6,13 @@ CREATE TABLE usuarios (
     nome VARCHAR(100),
     email VARCHAR(100) UNIQUE,
     senha VARCHAR(255),
-    dtNasc DATE
+    dtNasc DATE,
+    dtCadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE preferencias (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    fkUsuario INT,
+    fkUsuario INT NOT NULL,
     orcamentoMin DECIMAL(10,2),
     orcamentoMax DECIMAL(10,2),
     tipoCambio VARCHAR(20) CHECK (tipoCambio IN ('Manual', 'Automatico', 'Tanto faz')),
@@ -21,7 +22,7 @@ CREATE TABLE preferencias (
 
 CREATE TABLE tipoUso (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    fkUsuario INT,
+    fkUsuario INT NOT NULL,
     trabalho INT,
     diaADia INT,
     viagem INT,
@@ -31,7 +32,7 @@ CREATE TABLE tipoUso (
 
 CREATE TABLE prioridades (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    fkUsuario INT,
+    fkUsuario INT NOT NULL,
     economia INT,
     manutencao INT,
     seguranca INT,
@@ -55,8 +56,14 @@ CREATE TABLE carros (
     consumoEstrada DECIMAL(5,2),
     potenciaCV INT
 );
-
-select * from usuarios u
-inner join preferencias pre on pre.fkUsuario = u.id
+create view vw_preferencias as
+select 	pre.orcamentoMin AS orcMin, pre.orcamentoMax AS orcMax, pre.tipoCambio AS cambio, pre.anoMinimo AS anoMin, 
+		tu.trabalho AS trabalho, tu.diaADia AS diadia, tu.viagem AS viagem, tu.trabalhoComCarro AS trabalhoCar,
+		pri.economia AS eco, pri.manutencao seguranca, pri.design AS design, pri.espaco AS espaço, pri.revenda As revenda, pri.desempenho AS desempenho
+from  preferencias pre 
+inner join usuarios u on pre.fkUsuario = u.id
 inner join tipoUso tu on tu.fkUsuario = u.id
-inner join prioridades pri on pri.fkUsuario = u.id;
+inner join prioridades pri on pri.fkUsuario = u.id
+where u.id = 2;
+
+desc prioridades;

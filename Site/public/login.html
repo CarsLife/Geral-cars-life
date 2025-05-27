@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CarsLife | Login</title>
-    <!-- <script src="./js/sessao.js"></script> -->
+    <script src="./js/sessao.js"></script>
     <link rel="icon" href="./assets/logo.svg" />
     <link rel="stylesheet" href="./css/login.css">
 </head>
@@ -18,11 +18,16 @@
             <section class="routes">
                 <a href="./index.html" class="text">Home</a>
                 <a href="./sobre.html" class="text">Sobre</a>
-                <a href="./cadastro.html"><img src="./assets/profile.svg" alt="login"></a>
+                <a href="./login.html"><img src="./assets/profile.svg" alt="login"></a>
             </section>
         </div>
     </header>
-
+    <div id="erro" class="erro" style="display: none;">
+        <div id="cardErro" class="popup-erro">
+            <button onclick="Fechar()">X</button>
+            <p id="textoErro">Hello world</p>
+        </div>
+    </div>
     <div class="container">
         <h1>Bem vindo de volta!</h1>
         <div class="form">
@@ -66,27 +71,28 @@
 
 </html>
 
-<!-- <script>
 
+<script>
+    function LogIn() {
+        // aguardar();
 
-    function entrar() {
-        aguardar();
-
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
+        var emailVar = iptEmail.value;
+        var senhaVar = iptSenha.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            finalizarAguardar();
+            erro.style.display = "flex";
+            textoErro.innerHTML = `Algum dos campos em branco`;
+            setInterval(sumirMensagem, 5000);
             return false;
         }
         else {
-            setInterval(sumirMensagem, 5000)
+            erro.style.display = "flex";
+            textoErro.innerHTML = `Credencias sendo validadas`;
+            setInterval(sumirMensagem, 5000);
         }
 
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
+        console.log("E-mail: ", emailVar);
+        console.log("Senha: ", senhaVar);
 
         fetch("/usuarios/autenticar", {
             method: "POST",
@@ -101,25 +107,47 @@
             console.log("ESTOU NO THEN DO entrar()!")
 
             if (resposta.ok) {
-                console.log(resposta);
+                console.log(resposta + "Tudo ok");
 
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
+                    // Dados do usuário
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+                    sessionStorage.NASCIMENTO_USUARIO = json.nascimento;
+                    sessionStorage.CADASTRO_USUARIO = json.cadastro;
+                    // Preferencias
+                    sessionStorage.ORCMIN_PREFERENCIAS = json.orcMin;
+                    sessionStorage.ORCMAX_PREFERENCIAS = json.orcMax;
+                    sessionStorage.CAMBIO_PREFERENCIAS = json.cambio;
+                    sessionStorage.ANOMIN_PREFERENCIAS = json.anoMin;
+                    sessionStorage.TRABALHO_PREFERENCIAS = json.trabalho;
+                    sessionStorage.DIADIA_PREFERENCIAS = json.diadia;
+                    sessionStorage.VIAGEM_PREFERENCIAS = json.viagem;
+                    sessionStorage.TRABALHOCAR_PREFERENCIAS = json.trabalhoCar;
+                    sessionStorage.ECO_PREFERENCIAS = json.eco;
+                    sessionStorage.MANUTENCAO_PREFERENCIAS = json.manutencao;
+                    sessionStorage.SEGURANCA_PREFERENCIAS = json.seguranca;
+                    sessionStorage.DESIGN_PREFERENCIAS = json.design;
+                    sessionStorage.ESPACO_PREFERENCIAS = json.espaco;
+                    sessionStorage.REVENDA_PREFERENCIAS = json.revenda;
+                    sessionStorage.DESEMPENHO_PREFERENCIAS = json.desempenho;
+
+
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        console.log(sessionStorage)
+                        window.location = "./dashboard/inicio.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
 
             } else {
+                setTimeout(erroLogin, 2000)
+                setInterval(sumirMensagem, 5000);
 
-                console.log("Houve um erro ao tentar realizar o login!");
 
                 resposta.text().then(texto => {
                     console.error(texto);
@@ -135,7 +163,13 @@
     }
 
     function sumirMensagem() {
-        cardErro.style.display = "none"
+        erro.style.display = "none";
     }
 
-</script> -->
+    function erroLogin() {
+        erro.style.display = "flex",
+            textoErro.innerHTML = `Houve um erro ao realizar o login, tente novamente`
+        console.log("Houve um erro ao tentar realizar o login!");
+    }
+
+</script>
