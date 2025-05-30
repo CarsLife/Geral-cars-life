@@ -1,0 +1,67 @@
+@import url('./color.css');
+
+.navVertical {
+  width: 23.85vw;
+  background-color: var(--backgroundSelect);
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.navVertical a img {
+  width: 13.9vw;
+  height: 7.8vh;
+}
+
+.navVertical section {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-left: 3vw;
+  gap: 1.5vh;
+}
+
+.navVertical section a {
+  width: 13vw;
+  height: fit-content;
+  border-radius: 20px;
+  text-decoration: none;
+  color: var(--textColor);
+  font-size: 1.5vw;
+  font-weight: 600;
+}
+
+.navVertical section .selection {
+  background-color: var(--textColor);
+  color: var(--placeHolder);
+  height: fit-content;
+  padding-block: 1vh;
+  padding-inline: 1vw;
+}
+
+.navVertical button {
+  background-color: var(--backgroundDash);
+  color: var(--textColor);
+  border-radius: 20px;
+  border: none;
+  width: fit-content;
+  font-size: 1.5vw;
+  font-weight: 600;
+  padding-inline: 2vw;
+  padding-block: 1.5vh;
+  align-self: flex-end;
+  margin-top: 3vh;
+  margin-right: 2vw;
+  box-shadow: 0 0 40px var(--backgroundDash);
+  transition-duration: .24s;
+}
+
+.navVertical button:hover {
+  background-color: var(--hoverButton);
+  cursor: pointer;
+  transform: scale(1.1);
+  box-shadow: 0 0 40px var(--placeHolder);
+  transition-duration: .24s;
+}

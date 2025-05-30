@@ -17,7 +17,7 @@ function buscarPreferenciasPorId(id) {
 }
 
 function buscarCarrosPorPreferencias(preferencias) { // <-- Recebe 'preferencias' como argumento
-    let instrucaoSql = "SELECT marca, modelo, ano, preco, tipoCambio, tipoCombustivel, portas, consumoCidade, consumoEstrada, round((consumoCidade + consumoEstrada / 2), 2) AS consumo, potenciaCV FROM carsLife.carros WHERE 1=1";
+    let instrucaoSql = "SELECT marca, modelo, ano, preco, tipoCambio, tipoCombustivel, portas, consumoCidade, consumoEstrada, round((consumoCidade + consumoEstrada)/2, 2) AS consumo, potenciaCV FROM carsLife.carros WHERE 1=1";
 
     // --- Filtros Diretos (Ano, Preço, Portas, Consumo Geral) ---
 

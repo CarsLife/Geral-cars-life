@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('./style/color.css');
+@import url('./style/navVertical.css');
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'montserrat';
+}
+
+.content {
+  background: var(--backgroundDash);
+  color: var(--textColor);
+  font-family: 'montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100vh;
+  margin-left: 23.85vw;
+}
+
+.content h2 {
+  font-size: 2.22vw;
+  font-weight: 500;
+}
+
+.content h2 span {
+  font-weight: 800;
+}
+
+
+.cardSuperior {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background: var(--backgroundCard);
+  border-radius: 20px;
+  box-shadow: 0 0 40px var(--backgroundCard);
+  width: 70.49vw;
+  gap: 3vw;
+}
+
+.cardSuperior .superior {
+  width: fit-content;
+  max-width: 15vw;
+  font-size: 1.3vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: 1.5vh;
+
+}
+
+.cardSuperior .superior .informacao {
+  align-self: center;
+}
+
+.cardGrafico {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border-radius: 20px;
+  padding: 20px;
+  width: 70.49vw;
+  height: 52.68vh;
+  gap: 3vw;
+}

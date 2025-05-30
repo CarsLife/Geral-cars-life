@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('./style/navVertical.css');
+@import url('./style/color.css');
+
 
 * {
   margin: 0;
@@ -6,76 +9,9 @@
   font-family: 'montserrat';
 }
 
-.navVertical {
-  width: 23.85vw;
-  background-color: #1B1818;
-  height: 100vh;
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-.navVertical a img {
-  width: 13.9vw;
-  height: 7.8vh;
-}
-
-.navVertical section {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  margin-left: 3vw;
-  gap: 1.5vh;
-}
-
-.navVertical section a {
-  width: 8.61vw;
-  height: 5.18vh;
-  border-radius: 20px;
-  text-decoration: none;
-  color: #fff;
-  font-size: 1.5vw;
-  font-weight: 600;
-}
-
-.navVertical section .selection {
-  background-color: #fff;
-  color: #606060;
-  text-align: center;
-  height: fit-content;
-  padding-block: 1vh;
-}
-
-.navVertical button {
-  background-color: #420000;
-  color: #fff;
-  border-radius: 20px;
-  border: none;
-  width: fit-content;
-  font-size: 1.5vw;
-  font-weight: 600;
-  padding-inline: 2vw;
-  padding-block: 1.5vh;
-  align-self: flex-end;
-  margin-top: 3vh;
-  margin-right: 2vw;
-  box-shadow: 0 0 40px #620000;
-  transition-duration: .24s;
-}
-
-.navVertical button:hover {
-  background-color: #454401;
-  cursor: pointer;
-  transform: scale(1.1);
-  box-shadow: 0 0 40px #606060;
-  transition-duration: .24s;
-}
-
-
 .content {
-  background: #420000;
-  color: #fff;
+  background: var(--backgroundDash);
+  color: var(--textColor);
   font-family: 'montserrat', sans-serif;
   display: flex;
   flex-direction: column;
@@ -95,17 +31,28 @@
 }
 
 
-
 .cardSuperior {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  background: #620000;
+  background: var(--backgroundCard);
   border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 0 40px #620000;
+  box-shadow: 0 0 40px var(--backgroundCard);
   width: 70.49vw;
   gap: 3vw;
+}
+.cardSuperior .superior {
+  width: fit-content;
+  max-width: 15vw;
+  font-size: 1.3vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: 1.5vh;
+
+}
+.cardSuperior .superior .informacao{
+  align-self: center;
 }
 
 .cardGrafico {
@@ -113,11 +60,11 @@
   flex-direction: row;
   justify-content: space-evenly;
 
-  background: #620000;
+  background: var(--backgroundCard);
   border-radius: 20px;
   padding: 20px;
 
-  box-shadow: 0 0 40px #620000;
+  box-shadow: 0 0 40px var(--backgroundCard);
   width: 70.49vw;
   height: 52.68vh;
   gap: 3vw;
@@ -136,12 +83,12 @@
 }
 
 .cardGrafico .card select {
-  background-color: #1B1B1B;
+  background-color: var(--backgroundSelect);
   border: none;
   border-radius: 70px;
   font-size: 1.67vw;
   font-weight: bold;
-  color: #fff;
+  color: var(--textColor);
 }
 
 .cardGrafico .card .infoPrin {
@@ -165,19 +112,18 @@
   width: 12.15vw;
 }
 
-
 .cardGrafico .azul {
-  background-color: #38A4E8;
+  background-color: var(--blueSky);
 }
 
 .cardGrafico .card .azul {
-  background-color: #0C0146;
+  background-color: var(--darkBlue);
 }
 
 .cardGrafico .amarelo {
-  background-color: #454401;
+  background-color: var(--yellowSky);
 }
 
 .cardGrafico .card .amarelo {
-  background-color: #242400;
+  background-color: var(--darkYellow);
 }

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cars Life | Dashboard</title>
+  <link rel="shortcut icon" href="../assets/logo.svg" type="image/x-icon">
+  <link rel="stylesheet" href="../css/recomendados.css">
+</head>
+
+<body onload="carregar()">
+  <header class="navVertical">
+    <a href="../index.html"><img src="../assets/logoDash.svg" alt=""></a>
+    <section class="buttons">
+      <a href="./inicio.html">Início</a>
+      <a class="selection" href="./recomendados.html">Carros Recomendados</a>
+      <a href="./informacoes.html">Minhas Informações</a>
+    </section>
+    <button onclick="Sair()">Sair</button>
+  </header>
+  <div class="content">
+    <div id="div_superior">
+      <h2>Bem vindo de volta, <span id="nome">NOME</span></h2>
+      <div class="cardSuperior">
+        <div class="orcamento superior">
+          <h3>Orçamento</h3>
+          <section class="informacao">
+            <p id="prefMin">R$ 50.000 -</p>
+            <p id="prefMax">R$70.000</p>
+          </section>
+        </div>
+
+        <div class="cambio superior">
+          <h3>Câmbio</h3>
+          <section class="informacao">
+            <p id="prefCambio">Manual</p>
+          </section>
+        </div>
+        <div class="anoMin superior">
+          <h3>Ano Minimo</h3>
+          <section class="informacao">
+            <p>2015</p>
+          </section>
+        </div>
+        <div class="prioridade superior">
+          <h3>Prioridade(s)</h3>
+          <section class="informacao">
+            <p>Espaço</p>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="cardGrafico">
+      <div class="cardCarro">
+        <img src="../assets/Cars/chefrolet corsa.jpeg" alt="">
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
+
+<script>
+  function carregar() {
+    const prioridadesList = [];
+    if (sessionStorage.ECO_PREFERENCIAS == 1) prioridadesList.push("Ecônomia");
+    if (sessionStorage.MANUTENCAO_PREFERENCIAS == 1) prioridadesList.push("Manutenção");
+    if (sessionStorage.SEGURANCA_PREFERENCIAS == 1) prioridadesList.push("Segurança");
+    if (sessionStorage.DESIGN_PREFERENCIAS == 1) prioridadesList.push("Design");
+    if (sessionStorage.ESPACO_PREFERENCIAS == 1) prioridadesList.push("Espaço");
+    if (sessionStorage.REVENDA_PREFERENCIAS == 1) prioridadesList.push("Facilidade de revenda");
+    if (sessionStorage.DESEMPENHO_PREFERENCIAS == 1) prioridadesList.push("Desempenho");
+
+    let prioridadesText = `${prioridadesList[0]}`;
+    for (let i = 1; i < prioridadesList.length; i++) {
+      prioridadesText += `, ${prioridadesList[i]}`
+    }
+    const carrosRecomendados = JSON.parse(sessionStorage.CARROS_RECOMENDADOS);
+
+    console.log(carrosRecomendados)
+
+    div_superior.innerHTML = `
+        <h2>Bem vindo de volta, <span id="nome">${sessionStorage.NOME_USUARIO}</span></h2>
+            <div class="cardSuperior">
+                <div class="orcamento superior">
+                    <h3>Orçamento</h3>
+                    <section class="informacao">
+                        <p id="prefMin">R$ ${sessionStorage.ORCMIN_PREFERENCIAS} -</p>
+                        <p id="prefMax">R$ ${sessionStorage.ORCMAX_PREFERENCIAS}</p>
+                    </section>
+                </div>
+
+                <div class="cambio superior">
+                    <h3>Câmbio</h3>
+                    <section class="informacao">
+                        <p id="prefCambio">${sessionStorage.CAMBIO_PREFERENCIAS}</p>
+                    </section>
+                </div>
+                <div class="anoMin superior">
+                    <h3>Ano Minimo</h3>
+                    <section class="informacao">
+                        <p>${sessionStorage.ANOMIN_PREFERENCIAS}</p>
+                    </section>
+                </div>
+                <div class="prioridade superior">
+                    <h3>Prioridade(s)</h3>
+                    <section class="informacao">
+                        <p>${prioridadesText}</p>
+                    </section>
+                </div>
+            </div>
+        `;
+  }
+</script>

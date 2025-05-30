@@ -4,4 +4,13 @@
   --textColor: #fff;
   --link: #0084FF;
   --placeHolder: #606060;
+
+  --backgroundDash: #420000;
+  --backgroundCard: #620000;
+  --backgroundSelect: #1B1818;
+  --blueSky: #38A4E8;
+  --yellowSky: #454401;
+  --darkBlue: #0C0146;
+  --darkYellow: #242400;
+  --hoverButton: #454401;
 }

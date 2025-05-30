@@ -54,11 +54,11 @@
       </section>
       <section class="input">
         <p>Digite seu orçamento minimo (R$):</p>
-        <input type="number" id="iptMin" placeholder="R$: 999,99">
+        <input type="number" id="iptMin" placeholder="2000">
       </section>
       <section class="input">
         <p>Digite seu orçamento máximo (R$):</p>
-        <input type="number" id="iptMax" placeholder="R$: 999.999,99">
+        <input type="number" id="iptMax" placeholder="150000">
       </section>
       <section class="input">
         <p>Escolha o tipo de câmbio:</p>
@@ -70,7 +70,7 @@
       </section>
       <section class="input">
         <p>Digite o ano minimo do carro:</p>
-        <input type="number" id="iptMinAno" placeholder="2010">
+        <input type="number" id="iptMinAno" placeholder="2012">
       </section>
       <section class="input Tipo">
         <p>Tipo de uso:</p>
@@ -179,6 +179,22 @@
         finalizarAguardar();
         erro.style.display = "flex";
         textoErro.innerHTML = `Algum dos campos está em branco`;
+      }, 1000);
+      setTimeout(sumirMensagem, 5000);
+      return;
+    } else if (Number(json.anoMinVar) < 2012 || Number(json.anoMinVar > 2023)) {
+      setTimeout(() => {
+        finalizarAguardar();
+        erro.style.display = "flex";
+        textoErro.innerHTML = `O ano precisa ser pelo menos 2012 e no máximo 2023`;
+      }, 1000);
+      setTimeout(sumirMensagem, 5000);
+      return;
+    } else if (Number(json.orcamentoMinVar) < 2000 || Number(json.orcamentoMaxVar > 150000) || (Number(json.orcamentoMaxVar) - Number(json.orcamentoMinVar) <= 1000) ) {
+      setTimeout(() => {
+        finalizarAguardar();
+        erro.style.display = "flex";
+        textoErro.innerHTML = `O orçamento deve estar entre R$2.000,00 e R$150.000,00 com uma diferença minima de R$1.000,00 `;
       }, 1000);
       setTimeout(sumirMensagem, 5000);
       return;
