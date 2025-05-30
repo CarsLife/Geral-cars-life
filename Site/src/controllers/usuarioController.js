@@ -25,31 +25,45 @@ function autenticar(req, res) {
 
                                 console.log(`\nResultados encontrados: ${resultadoPreferencias.length}`);
                                 console.log(`Resultados: ${JSON.stringify(resultadoPreferencias)}`);
-
                                 if (resultadoPreferencias.length > 0) {
-                                    res.json({
-                                        id: resultadoAutenticar[0].id,
-                                        nome: resultadoAutenticar[0].nome,
-                                        email: resultadoAutenticar[0].email,
-                                        senha: resultadoAutenticar[0].senha,
-                                        nascimento: resultadoAutenticar[0].dtNasc,
-                                        cadastro: resultadoAutenticar[0].dtCadastro,
-                                        orcMin: resultadoPreferencias[0].orcMin,
-                                        orcMax: resultadoPreferencias[0].orcMax,
-                                        cambio: resultadoPreferencias[0].cambio,
-                                        anoMin: resultadoPreferencias[0].anoMin,
-                                        trabalho: resultadoPreferencias[0].trabalho,
-                                        diadia: resultadoPreferencias[0].diadia,
-                                        viagem: resultadoPreferencias[0].viagem,
-                                        trabalhoCar: resultadoPreferencias[0].trabalhoCar,
-                                        eco: resultadoPreferencias[0].eco,
-                                        manutencao: resultadoPreferencias[0].manutencao,
-                                        seguranca: resultadoPreferencias[0].seguranca,
-                                        design: resultadoPreferencias[0].design,
-                                        espaco: resultadoPreferencias[0].espaco,
-                                        revenda: resultadoPreferencias[0].revenda,
-                                        desempenho: resultadoPreferencias[0].desempenho
-                                    });
+
+
+
+                                    preferenciasModel.buscarCarrosPorPreferencias(resultadoPreferencias[0])
+                                        .then((resultadosCarros) => {
+
+                                            console.log(`\nResultados encontrados: ${resultadosCarros.length}`);
+                                            console.log(`Resultados: ${JSON.stringify(resultadosCarros)}`);
+
+                                            if (resultadosCarros.length > 0) {
+                                                res.json({
+                                                    id: resultadoAutenticar[0].id,
+                                                    nome: resultadoAutenticar[0].nome,
+                                                    email: resultadoAutenticar[0].email,
+                                                    senha: resultadoAutenticar[0].senha,
+                                                    nascimento: resultadoAutenticar[0].dtNasc,
+                                                    cadastro: resultadoAutenticar[0].dtCadastro,
+                                                    orcMin: resultadoPreferencias[0].orcMin,
+                                                    orcMax: resultadoPreferencias[0].orcMax,
+                                                    cambio: resultadoPreferencias[0].cambio,
+                                                    anoMin: resultadoPreferencias[0].anoMin,
+                                                    trabalho: resultadoPreferencias[0].trabalho,
+                                                    diadia: resultadoPreferencias[0].diadia,
+                                                    viagem: resultadoPreferencias[0].viagem,
+                                                    trabalhoCar: resultadoPreferencias[0].trabalhoCar,
+                                                    eco: resultadoPreferencias[0].eco,
+                                                    manutencao: resultadoPreferencias[0].manutencao,
+                                                    seguranca: resultadoPreferencias[0].seguranca,
+                                                    design: resultadoPreferencias[0].design,
+                                                    espaco: resultadoPreferencias[0].espaco,
+                                                    revenda: resultadoPreferencias[0].revenda,
+                                                    desempenho: resultadoPreferencias[0].desempenho,
+                                                    carrosRecomendados: resultadosCarros
+                                                });
+                                            } else {
+                                                res.status(204).json({ carros: [] });
+                                            }
+                                        })
                                 } else {
                                     res.status(204).json({ preferencias: [] });
                                 }
@@ -114,8 +128,7 @@ function cadastrarPreferencias(req, res) {
     var orcamentoMax = req.body.orcamentoMaxServer;
     var cambio = req.body.cambioServer;
     var anoMin = req.body.anoMinServer;
-    var email = req.body.emailServer;
-    var senha = req.body.senhaServer
+    var idUsuario = req.body.idServer
 
     if (orcamentoMin == undefined) {
         res.status(400).send("Seu orçamento mínimo está undefined!");
@@ -125,12 +138,12 @@ function cadastrarPreferencias(req, res) {
         res.status(400).send("Seu tipo de cambio está undefined!");
     } else if (anoMin == undefined) {
         res.status(400).send("Seu ano minimo está undefined!");
-    } else if (email == undefined || senha == undefined) {
-        res.status(400).send("Seu email ou senha está undefined!");
+    } else if (idUsuario == undefined) {
+        res.status(400).send("O id do usuario está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrarPreferencias(orcamentoMin, orcamentoMax, cambio, anoMin, email, senha)
+        usuarioModel.cadastrarPreferencias(orcamentoMin, orcamentoMax, cambio, anoMin, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -153,17 +166,17 @@ function cadastrarTipo(req, res) {
     var dia = req.body.diaServer;
     var viagem = req.body.viagemServer;
     var trabalhoCar = req.body.trabalhoCarServer;
-    var email = req.body.emailServer;
-    var senha = req.body.senhaServer
+    var idUsuario = req.body.idServer
+
 
     if (trabalho == undefined || dia == undefined || viagem == undefined || trabalhoCar == undefined) {
-        res.status(400).send("Seu tipo de uso esta undefined!")
-    } else if (email == undefined || senha == undefined) {
-        res.status(400).send("Seu email ou senha está undefined!")
+        res.status(400).send("Seu tipo de uso está undefined!")
+    } else if (idUsuario == undefined) {
+        res.status(400).send("O idUsuario está undefined!")
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrarTipo(trabalho, dia, viagem, trabalhoCar, email, senha)
+        usuarioModel.cadastrarTipo(trabalho, dia, viagem, trabalhoCar, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -189,17 +202,17 @@ function cadastrarPrioridades(req, res) {
     var espaco = req.body.espacoServer;
     var revenda = req.body.revendaServer;
     var desempenho = req.body.desempenhoServer;
-    var email = req.body.emailServer;
-    var senha = req.body.senhaServer
+    var idUsuario = req.body.idServer
+
 
     if (economia == undefined || manutencao == undefined || seguranca == undefined || design == undefined || espaco == undefined || revenda == undefined || desempenho == undefined) {
         res.status(400).send("Suas prioridades estão undefined!")
-    } else if (email == undefined || senha == undefined) {
-        res.status(400).send("Seu email ou senha esta undefined!")
+    } else if (idUsuario == undefined) {
+        res.status(400).send("O idUsuario está undefined!")
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrarPrioridades(economia, manutencao, seguranca, design, espaco, revenda, desempenho, email, senha)
+        usuarioModel.cadastrarPrioridades(economia, manutencao, seguranca, design, espaco, revenda, desempenho, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);

@@ -216,7 +216,8 @@ body {
   transition-duration: .2s;
 }
 
-.erro {
+.erro,
+.aguardando {
   position: fixed;
   top: 0;
   left: 0;
@@ -233,7 +234,8 @@ body {
   backdrop-filter: blur(4px);
 }
 
-.erro .popup-erro {
+.erro .popup-erro,
+.aguardando .popupAguardando{
   background-color: var(--darkRed);
   width: 40vw;
   padding: 2.5vw;
@@ -249,14 +251,17 @@ body {
   position: relative;
 }
 
-.erro .popup-erro p {
+.erro .popup-erro p,
+.aguardando .popupAguardando p{
   color: var(--textColor);
   font-size: 1.2vw;
   text-align: center;
   margin-top: 2vh;
 }
 
-.erro .popup-erro button {
+.erro .popup-erro button,
+.aguardando .popupAguardando button{
+
   position: absolute;
   top: 1vw;
   right: 1vw;

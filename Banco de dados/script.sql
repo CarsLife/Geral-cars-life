@@ -1,6 +1,6 @@
+DROP DATABASE IF EXISTS carsLife;
 CREATE DATABASE carsLife;
 USE carsLife;
-
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100),
@@ -56,6 +56,7 @@ CREATE TABLE carros (
     consumoEstrada DECIMAL(5,2),
     potenciaCV INT
 );
+
 create view vw_preferencias as
 select 	pre.orcamentoMin AS orcMin, pre.orcamentoMax AS orcMax, pre.tipoCambio AS cambio, pre.anoMinimo AS anoMin, 
 		tu.trabalho AS trabalho, tu.diaADia AS diadia, tu.viagem AS viagem, tu.trabalhoComCarro AS trabalhoCar,
@@ -63,7 +64,8 @@ select 	pre.orcamentoMin AS orcMin, pre.orcamentoMax AS orcMax, pre.tipoCambio A
 from  preferencias pre 
 inner join usuarios u on pre.fkUsuario = u.id
 inner join tipoUso tu on tu.fkUsuario = u.id
-inner join prioridades pri on pri.fkUsuario = u.id
-where u.id = 2;
-
+inner join prioridades pri on pri.fkUsuario = u.id;
 desc prioridades;
+
+
+

@@ -111,7 +111,7 @@
 
                 resposta.json().then(json => {
                     console.log(json);
-                    console.log(JSON.stringify(json));
+                    console.log(json.carrosRecomendados);
                     // Dados do usuário
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
@@ -134,13 +134,14 @@
                     sessionStorage.ESPACO_PREFERENCIAS = json.espaco;
                     sessionStorage.REVENDA_PREFERENCIAS = json.revenda;
                     sessionStorage.DESEMPENHO_PREFERENCIAS = json.desempenho;
+                    sessionStorage.CARROS_RECOMENDADOS = JSON.stringify(json.carrosRecomendados);
 
 
 
                     setTimeout(function () {
-                        console.log(sessionStorage)
+                        console.log("Esses são os carros recomendados", sessionStorage.CARROS_RECOMENDADOS)
                         window.location = "./dashboard/inicio.html";
-                    }, 1000); // apenas para exibir o loading
+                    }, 2000); // apenas para exibir o loading
 
                 });
 

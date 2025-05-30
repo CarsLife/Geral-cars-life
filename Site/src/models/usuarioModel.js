@@ -27,13 +27,13 @@ function cadastrarUsuario(nome, email, senha, nasc) {
     return database.executar(instrucaoSql);
 }
 
-function cadastrarPreferencias(orcamentoMin, orcamentoMax, cambio, anoMin, email, senha) {
-    console.log("ACESSEI O USUARIO MODEL \n\n function cadastrarDados():", orcamentoMin, orcamentoMax, cambio, anoMin, email, senha);
+function cadastrarPreferencias(orcamentoMin, orcamentoMax, cambio, anoMin, id) {
+    console.log("ACESSEI O USUARIO MODEL \n\n function cadastrarDados():", orcamentoMin, orcamentoMax, cambio, anoMin, id);
 
     // Executando todos os INSERTs em sequência
     const instrucaoSql = `
     INSERT INTO preferencias (fkUsuario, orcamentoMin, orcamentoMax, tipoCambio, anoMinimo)
-    VALUES ((select id from usuarios where email = '${email}' and senha = '${senha}'), '${orcamentoMin}', '${orcamentoMax}', '${cambio}', '${anoMin}');
+    VALUES ('${id}', '${orcamentoMin}', '${orcamentoMax}', '${cambio}', '${anoMin}');
     `;
 
     console.log("Executando a instrução SQL:\n" + instrucaoSql);
@@ -41,24 +41,24 @@ function cadastrarPreferencias(orcamentoMin, orcamentoMax, cambio, anoMin, email
 }
 
 
-function cadastrarTipo(trabalho, dia, viagem, trabalhoCar, email, senha) {
-    console.log("ACESSEI O USUARIO MODEL \n\n function cadastrarDados():", trabalho, dia, viagem, trabalhoCar, email, senha);
+function cadastrarTipo(trabalho, dia, viagem, trabalhoCar, id) {
+    console.log("ACESSEI O USUARIO MODEL \n\n function cadastrarDados():", trabalho, dia, viagem, trabalhoCar, id);
 
     const instrucaoSql = `
         INSERT INTO tipoUso (fkUsuario, trabalho, diaADia, viagem, trabalhoComCarro)
-        VALUES ((select id from usuarios where email = '${email}' and senha = '${senha}'), '${trabalho}', '${dia}', '${viagem}', '${trabalhoCar}');
+        VALUES ('${id}', '${trabalho}', '${dia}', '${viagem}', '${trabalhoCar}');
     `;
 
     console.log("Executando a instrução SQL:\n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function cadastrarPrioridades(economia, manutencao, seguranca, design, espaco, revenda, desempenho, email, senha) {
-    console.log("ACESSEI O USUARIO MODEL \n\n function cadastrarDados():", economia, manutencao, seguranca, design, espaco, revenda, desempenho, email, senha);
+function cadastrarPrioridades(economia, manutencao, seguranca, design, espaco, revenda, desempenho, id) {
+    console.log("ACESSEI O USUARIO MODEL \n\n function cadastrarDados():", economia, manutencao, seguranca, design, espaco, revenda, desempenho, id);
 
     const instrucaoSql = `
         INSERT INTO prioridades (fkUsuario, economia, manutencao, seguranca, design, espaco, revenda, desempenho)
-        VALUES ((select id from usuarios where email = '${email}' and senha = '${senha}'), '${economia}', '${manutencao}', '${seguranca}', '${design}', '${espaco}', '${revenda}', '${desempenho}');
+        VALUES ('${id}', '${economia}', '${manutencao}', '${seguranca}', '${design}', '${espaco}', '${revenda}', '${desempenho}');
     `;
 
     console.log("Executando a instrução SQL:\n" + instrucaoSql);

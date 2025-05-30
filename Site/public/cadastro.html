@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="./css/cadastro.css">
 </head>
 
-<!-- <body onload="listar()"> -->
 <body>
   <header>
     <div class="navBar">
@@ -19,10 +18,18 @@
       <section class="routes">
         <a href="./index.html" class="text">Home</a>
         <a href="./sobre.html" class="text">Sobre</a>
-        <a href="./cadastro.html"><img src="./assets/profile.svg" alt="login"></a>
+        <a href="./login.html"><img src="./assets/profile.svg" alt="login"></a>
       </section>
     </div>
   </header>
+  <div id="aguardar" class="aguardando" style="display: none;">
+    <div id="cardAguardar" class="popupAguardando">
+      <button onclick="finalizarAguardar()">X</button>
+      <img src="./assets/loading.gif" alt="" width="40vw" height="40vh">
+      <p>Loading...</p>
+    </div>
+  </div>
+
   <div id="erro" class="erro" style="display: none;">
     <div id="cardErro" class="popup-erro">
       <button onclick="Fechar()">X</button>
@@ -130,14 +137,9 @@
 </html>
 
 <script>
-
-
-
   function cadastrar() {
-    // aguardar();
+    aguardar();
 
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
     const json = {
       nomeVar: iptNome.value,
       emailVar: iptEmail.value,
@@ -149,7 +151,6 @@
       cambioVar: iptCambio.value,
       anoMinVar: iptMinAno.value,
 
-      // Recuperando valores de checkboxes (true ou false)
       trabalhoVar: chkTrabalho.checked,
       diaVar: chkDia.checked,
       viagemVar: chkViagem.checked,
@@ -162,134 +163,151 @@
       revendaVar: chkRevenda.checked,
       desempenhoVar: chkDesempenho.checked
     };
-    // Função para tratar os dados vindos das checkboxes
+
     ceckBox(json);
 
-    // Verificando se há algum campo em branco
-    if (json.nomeVar == "" || json.emailVar == "" || json.nascVar == "" || json.senhaVar == "" || json.confirmacaoSenhaVar == "" || json.orcamentoMinVar == "" || json.orcamentoMaxVar == "" || json.cambioVar == "" || json.anoMinVar == "" || json.trabalhoVar == "" && json.diaVar == "" && json.viagemVar == "" && json.trabalhoCarVar == "" || json.economiaVar == "" && json.manutencaoVar == "" && json.segurancaVar == "" && json.designVar == "" && json.espacoVar == "" && json.revendaVar == "" && json.desempenhoVar == "") {
-      erro.style.display = "flex";
-      textoErro.innerHTML = `Algum dos campos em branco`;
-      setInterval(sumirMensagem, 5000);
-      return false;
+    if (
+      json.nomeVar == "" || json.emailVar == "" || json.nascVar == "" ||
+      json.senhaVar == "" || json.confirmacaoSenhaVar == "" ||
+      json.orcamentoMinVar == "" || json.orcamentoMaxVar == "" ||
+      json.cambioVar == "" || json.anoMinVar == "" ||
+      (json.trabalhoVar == false && json.diaVar == false && json.viagemVar == false && json.trabalhoCarVar == false) ||
+      (json.economiaVar == false && json.manutencaoVar == false && json.segurancaVar == false &&
+        json.designVar == false && json.espacoVar == false && json.revendaVar == false && json.desempenhoVar == false)
+    ) {
+      setTimeout(() => {
+        finalizarAguardar();
+        erro.style.display = "flex";
+        textoErro.innerHTML = `Algum dos campos está em branco`;
+      }, 1000);
+      setTimeout(sumirMensagem, 5000);
+      return;
     } else if (!json.emailVar.includes("@") || !json.emailVar.includes(".")) {
-      erro.style.display = "flex";
-      textoErro.innerHTML = "E-mail inválido";
-      // finalizarAguardar();
-      setInterval(sumirMensagem, 5000);
-      return false;
+      setTimeout(() => {
+        finalizarAguardar();
+        erro.style.display = "flex";
+        textoErro.innerHTML = "E-mail inválido";
+      }, 1000);
+      setTimeout(sumirMensagem, 5000);
+      return;
+    } else if (!verificarSenha(json.senhaVar)) {
+      setTimeout(() => {
+        finalizarAguardar();
+        erro.style.display = "flex";
+        textoErro.innerHTML = "Sua senha deve conter no mínimo 8 caracteres, uma letra maiúscula e uma minúscula";
+      }, 1000);
+      setTimeout(sumirMensagem, 5000);
+      return;
     } else if (json.senhaVar != json.confirmacaoSenhaVar) {
-      erro.style.display = "flex";
-      textoErro.innerHTML = "Senha diferente";
-      // finalizarAguardar();
-      setInterval(sumirMensagem, 5000);
-      return false;
+      setTimeout(() => {
+        finalizarAguardar();
+        erro.style.display = "flex";
+        textoErro.innerHTML = "Senhas diferentes";
+      }, 1000);
+      setTimeout(sumirMensagem, 5000);
+      return;
+    } else {
+      setTimeout(() => {
+        erro.style.display = "flex";
+        textoErro.innerHTML = "Cadastro sendo realizado...";
+      }, 1000);
     }
 
-    else {
-      erro.style.display = "flex";
-      textoErro.innerHTML = "Cadastro realizado com sucesso";
-      setInterval(sumirMensagem, 5000);
-    }
+    let idVar = null;
 
-    // Enviando o valor da nova input
     fetch("/usuarios/cadastrarUsuario", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
         nomeServer: json.nomeVar,
         nascServer: json.nascVar,
         emailServer: json.emailVar,
         senhaServer: json.senhaVar,
-
-
-      }),
-    }).then(function (resposta) {
-      if (resposta.ok) {
-        console.log(ResultSetHeader.insertId)
-      }
-    })
-
-    fetch("/usuarios/cadastrarPreferencias", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        orcamentoMinServer: json.orcamentoMinVar,
-        orcamentoMaxServer: json.orcamentoMaxVar,
-        cambioServer: json.cambioVar,
-        anoMinServer: json.anoMinVar,
-        emailServer: json.emailVar,
-        senhaServer: json.senhaVar,
       }),
     })
-    fetch("/usuarios/cadastrarTipo", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        trabalhoServer: json.trabalhoVar,
-        diaServer: json.diaVar,
-        viagemServer: json.viagemVar,
-        trabalhoCarServer: json.trabalhoCarVar,
-        emailServer: json.emailVar,
-        senhaServer: json.senhaVar,
-      }),
-    })
-    fetch("/usuarios/cadastrarPrioridades", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        economiaServer: json.economiaVar,
-        manutencaoServer: json.manutencaoVar,
-        segurancaServer: json.segurancaVar,
-        designServer: json.designVar,
-        espacoServer: json.espacoVar,
-        revendaServer: json.revendaVar,
-        desempenhoServer: json.desempenhoVar,
-        emailServer: json.emailVar,
-        senhaServer: json.senhaVar,
-      }),
-    }).then(function (resposta) {
-      console.log("resposta: ", resposta);
+      .then(response => {
+        if (!response.ok) throw new Error("Erro ao cadastrar usuário");
+        return response.json();
+      })
+      .then(data => {
+        idVar = Number(data.insertId);
+        return fetch("/usuarios/cadastrarPreferencias", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            orcamentoMinServer: json.orcamentoMinVar,
+            orcamentoMaxServer: json.orcamentoMaxVar,
+            cambioServer: json.cambioVar,
+            anoMinServer: json.anoMinVar,
+            idServer: idVar
+          }),
+        });
+      })
+      .then(response => {
+        if (!response.ok) throw new Error("Erro ao cadastrar preferências");
+        return fetch("/usuarios/cadastrarTipo", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            trabalhoServer: json.trabalhoVar,
+            diaServer: json.diaVar,
+            viagemServer: json.viagemVar,
+            trabalhoCarServer: json.trabalhoCarVar,
+            idServer: idVar
+          }),
+        });
+      })
+      .then(response => {
+        if (!response.ok) throw new Error("Erro ao cadastrar tipo");
+        return fetch("/usuarios/cadastrarPrioridades", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            economiaServer: json.economiaVar,
+            manutencaoServer: json.manutencaoVar,
+            segurancaServer: json.segurancaVar,
+            designServer: json.designVar,
+            espacoServer: json.espacoVar,
+            revendaServer: json.revendaVar,
+            desempenhoServer: json.desempenhoVar,
+            idServer: idVar
+          }),
+        });
+      })
+      .then(response => {
+        if (response.ok) {
+          setTimeout(() => {
+            erro.style.display = "flex";
+            textoErro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+          }, 800);
 
-      if (resposta.ok) {
-        erro.style.display = "flex";
-        textoErro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+          setTimeout(() => {
+            window.location = "./login.html";
+          }, 1500);
 
+          finalizarAguardar();
+        } else {
+          throw new Error("Erro ao cadastrar prioridades");
+        }
+      })
+      .catch(error => {
+        console.error(`#ERRO: ${error}`);
         setTimeout(() => {
-          window.location = "./login.html";
-        }, "2000");
-
-        limparFormulario();
-        finalizarAguardar();
-      } else {
-        throw "Houve um erro ao tentar realizar o cadastro!";
-      }
-    })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
+          finalizarAguardar();
+          erro.style.display = "flex";
+          textoErro.innerHTML = "Houve um erro ao tentar realizar o cadastro";
+        }, 1000);
+        setTimeout(sumirMensagem, 5000);
       });
 
     return false;
-  }
-
-
-  function sumirMensagem() {
-    erro.style.display = "none";
   }
 </script>

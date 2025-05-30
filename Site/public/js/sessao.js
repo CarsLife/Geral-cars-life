@@ -12,31 +12,50 @@ function validarSessao() {
   }
 }
 
+function sumirMensagem() {
+  var erro = document.getElementById("erro")
+  erro.style.display = "none";
+}
+
+function aguardar() {
+  var divAguardar = document.getElementById("aguardar");
+  divAguardar.style.display = "flex";
+}
+
+function finalizarAguardar() {
+  var divAguardar = document.getElementById("aguardar");
+  divAguardar.style.display = "none"
+}
+
+
 function Fechar() {
   erro.style.display = "none";
 }
 
-function limparSessao() {
-  sessionStorage.clear();
-  window.location = "../login.html";
-}
+function verificarSenha(senha) {
+    const letrasMinusculas = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    const letrasMaiusculas = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+    const numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
-// carregamento (loading)
-function aguardar() {
-  var divAguardar = document.getElementById("div_aguardar");
-  divAguardar.style.display = "flex";
-}
+    let temMaiuscula = false;
+    let temMinuscula = false;
+    let temNumero = false;
 
-function finalizarAguardar(texto) {
-  var divAguardar = document.getElementById("div_aguardar");
-  divAguardar.style.display = "none";
+    for (let i = 0; i < senha.length; i++) {
+      const caractere = senha[i];
+      if (letrasMaiusculas.includes(caractere)) {
+        temMaiuscula = true;
+      }
+      if (letrasMinusculas.includes(caractere)) {
+        temMinuscula = true;
+      }
+      if (numeros.includes(caractere)) {
+        temNumero = true;
+      }
+    }
 
-  var divErrosLogin = document.getElementById("div_erros_login");
-  if (texto) {
-    divErrosLogin.style.display = "flex";
-    divErrosLogin.innerHTML = texto;
+    return senha.length >= 8 && temMaiuscula && temMinuscula && temNumero;
   }
-}
 
 function ceckBox(json) {
   if (json.trabalhoVar == true) json.trabalhoVar = 1;
