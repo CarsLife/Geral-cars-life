@@ -21,7 +21,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 126.46vh;
+  height: 194.24vh;
   gap: 5vh;
 }
 
@@ -62,11 +62,23 @@ body {
   border-radius: 4.86vw;
 }
 
+.container .sobre .content .foto3 {
+  width: 24.31vw;
+  height: 39.06vh;
+  object-fit: cover;
+  box-shadow: 0vw 0vh 100px var(--lightYellow);
+  border-radius: 4.86vw;
+}
+
 .container .sobre .content .card {
   height: fit-content;
   width: fit-content;
   border-radius: 4.86vw;
   background-color: var(--darkRed);
+}
+
+.container .sobre .content .yellow {
+  background-color: var(--lightYellow);
 }
 
 .container .sobre .content .card p {
@@ -77,6 +89,9 @@ body {
   padding-block: 5vh;
 }
 
+.container .sobre .content .yellow p {
+  font-size: 1.94vw;
+}
 
 .container .sobre h1 {
   font-size: 4.44vw;

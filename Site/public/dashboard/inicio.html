@@ -277,19 +277,19 @@
 
         radarChart.data.datasets[0].label = `${car1.modelo}`;
         radarChart.data.datasets[0].data = [
-            ((car1.ano - anoMin) / (2025 - anoMin)) * 100,
+            ((car1.ano - anoMin) / (2023 - anoMin)) * 100,
             (car1.preco / precoMax) * 100,
             (car1.consumo / consumoMax) * 100,
-            (car1.portas / 4) * 100,
+            car1.portas * 25,
             (car1.potenciaCV / potenciaMax) * 100
         ];
 
         radarChart.data.datasets[1].label = `${car2.modelo}`;
         radarChart.data.datasets[1].data = [
-            ((car2.ano - anoMin) / (2025 - anoMin)) * 100,
+            ((car2.ano - anoMin) / (2023 - anoMin)) * 100,
             (car2.preco / precoMax) * 100,
             (car2.consumo / consumoMax) * 100,
-            (car2.portas / 4) * 100,
+            car2.portas * 25,
             (car2.potenciaCV / potenciaMax) * 100
         ];
         radarChart.update();

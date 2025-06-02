@@ -90,7 +90,7 @@ function buscarCarrosPorPreferencias(preferencias) { // <-- Recebe 'preferencias
         instrucaoSql += ` AND preco <= 75000 AND marca IN ('Volkswagen', 'Fiat', 'Chevrolet', 'Hyundai')`;
     }
 
-    instrucaoSql += ` ORDER BY consumo DESC, ano DESC, preco ASC LIMIT 30;`;
+    instrucaoSql += ` ORDER BY consumo DESC, ano DESC, preco ASC;`;
 
     console.log("Executando a instrução SQL (buscarCarrosPorPreferencias): \n" + instrucaoSql);
     return database.executar(instrucaoSql);

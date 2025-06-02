@@ -1,3 +1,4 @@
+SELECT id, nome, email, dtNasc, dtCadastro, senha FROM usuarios;
 INSERT INTO carsLife.carros (marca, modelo, ano, preco, tipoCambio, tipoCombustivel, portas, consumoCidade, consumoEstrada, potenciaCV) VALUES
 ('Peugeot', '2008', 2022, 40223.59, 'Manual', 'Flex', 4, 8.52, 15.15, 124),
 ('Nissan', 'March', 2017, 62612.64, 'Automatico', 'Gasolina', 2, 10.27, 11.17, 96),
