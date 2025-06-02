@@ -1,0 +1,33 @@
+.content h2 {
+  font-size: 2.22vw;
+  font-weight: 500;
+}
+
+.content h2 span {
+  font-weight: 800;
+}
+
+
+.cardSuperior {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background: var(--backgroundCard);
+  border-radius: 20px;
+  box-shadow: 0 0 40px var(--backgroundCard);
+  width: 70.49vw;
+  gap: 3vw;
+}
+.cardSuperior .superior {
+  width: fit-content;
+  max-width: 15vw;
+  font-size: 1.3vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: 1.5vh;
+
+}
+.cardSuperior .superior .informacao{
+  align-self: center;
+}
