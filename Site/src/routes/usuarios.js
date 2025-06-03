@@ -3,7 +3,6 @@ var router = express.Router();
 
 var usuarioController = require("../controllers/usuarioController");
 
-//Recebendo os dados do html e direcionando para a função cadastrar de usuarioController.js
 router.post("/cadastrarUsuario", function (req, res) {
     usuarioController.cadastrarUsuario(req, res);
 });
@@ -24,5 +23,20 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.put("/alterarUsuario", function (req, res) {
+    usuarioController.alterarUsuario(req, res);
+});
+
+router.put("/alterarPreferencias", function (req, res) {
+    usuarioController.alterarPreferencias(req, res);
+});
+
+router.put("/alterarTipo", function (req, res) {
+    usuarioController.alterarTipo(req, res);
+});
+
+router.put("/alterarPrioridades", function (req, res) {
+    usuarioController.alterarPrioridades(req, res);
+});
 
 module.exports = router;

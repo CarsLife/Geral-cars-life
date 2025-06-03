@@ -22,18 +22,16 @@
 }
 
 
-
-
 .cardGrafico {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 
   background: var(--backgroundCard);
-  border-radius: 20px;
-  padding: 20px;
+  border-radius: 2vw;
+  padding: 2vw;
 
-  box-shadow: 0 0 40px var(--backgroundCard);
+  box-shadow: 0 0 4vw var(--backgroundCard);
   width: 70.49vw;
   height: 52.68vh;
   gap: 3vw;
@@ -42,7 +40,7 @@
 .cardGrafico .card {
   width: 14.86vw;
   height: fit-content;
-  border-radius: 20px;
+  border-radius: 2vw;
   padding-block: 3vh;
   padding-inline: 1vw;
   display: flex;
@@ -54,10 +52,13 @@
 .cardGrafico .card select {
   background-color: var(--backgroundSelect);
   border: none;
-  border-radius: 70px;
-  font-size: 1.67vw;
+  border-radius: 30vw;
+  font-size: 1.5vw;
   font-weight: bold;
   color: var(--textColor);
+  padding-left: 1vw;
+  cursor: pointer;
+  appearance: none;
 }
 
 .cardGrafico .card .infoPrin {
@@ -70,7 +71,7 @@
   padding-block: 1vh;
   font-size: 1.04vw;
   font-weight: bold;
-  border-radius: 20px;
+  border-radius: 2vw;
   display: flex;
   flex-direction: column;
   justify-content: center;

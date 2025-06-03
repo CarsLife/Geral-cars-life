@@ -7,3 +7,291 @@
   margin: 0;
   font-family: 'montserrat';
 }
+
+
+
+body {
+  background: var(--backgroundDash);
+  color: var(--textColor);
+
+}
+
+button{
+  background-color: none;
+  border: none;
+}
+
+.content {
+  margin-left: 23.85vw;
+  padding: 2vh 2vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content .cabecalho {
+  display: flex;
+  flex-direction: row;
+}
+
+
+.content .cabecalho h1 {
+  font-size: 3.33vw;
+  width: 37.5vw;
+  height: 9.77vh;
+  color: var(--textColor);
+  font-weight: 700;
+  margin-bottom: .3vh;
+  margin-top: 2vh;
+}
+
+.content .cabecalho button {
+  background: none;
+  transition-duration: .24s;
+}
+
+.content .cabecalho button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition-duration: .24s;
+}
+
+.content .form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--textColor);
+  font-size: 2.22vw;
+  font-weight: 600;
+  gap: 4.88vh;
+}
+
+.content .form .input {
+  width: 55.56vw;
+  height: 14.65vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--darkRed);
+  border-radius: 4.86vw;
+}
+
+.content .form .input p {
+  margin-left: 3.06vw;
+  margin-top: 3.42vh;
+}
+
+.content .form .input input {
+  margin-left: 3.06vw;
+  width: 47.84vw;
+  height: 3.91vh;
+  border-radius: 4.86vw;
+  border: none;
+  font-size: 1.67vw;
+  font-weight: 500;
+  padding-inline: .8vw;
+}
+
+.content .form .input input::placeholder {
+  font-weight: bold;
+  color: var(--placeHolder);
+}
+
+.content .form .input select {
+  margin-left: 3.06vw;
+  width: 49.44vw;
+  height: 3.91vh;
+  border-radius: 4.86vw;
+  border: none;
+  font-size: 1.67vw;
+  font-weight: bold;
+  padding-inline: .8vw;
+}
+
+.content .form .Tipo {
+  height: 30vh;
+}
+
+.content .form .Prioridades {
+  height: 46vh;
+}
+
+.content .form .input .check {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+}
+
+.content .form .input .check label {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  font-size: 1.67vw;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--textColor);
+  transition: color 0.3s ease;
+  width: fit-content;
+}
+
+.content .form .input .check input[type="checkbox"] {
+  appearance: none;
+  width: 1.8vw;
+  height: 1.8vw;
+  border-radius: 50%;
+  border: 0.2vw solid var(--textColor);
+  position: relative;
+  cursor: pointer;
+  transition-duration: 0.2s;
+}
+
+.content .form .input .check input[type="checkbox"]:hover+span {
+  color: var(--placeHolder);
+  transition-duration: .2s;
+}
+
+.content .form .input .check input[type="checkbox"]:hover {
+  border-color: var(--placeHolder);
+  transition-duration: .2s;
+}
+
+.content .form .input .check input[type="checkbox"]:checked {
+  background-color: var(--darkRed);
+  border-color: var(--darkRed);
+  transition-duration: .2s;
+}
+
+.content .form .input .check input[type="checkbox"]:checked::after {
+  content: '✔';
+  color: var(--placeHolder);
+  font-size: 1vw;
+  position: absolute;
+  top: 10%;
+  left: 25%;
+  transition-duration: .2s;
+}
+
+.content .form .input .check input[type="checkbox"]:checked+span {
+  color: var(--placeHolder);
+  transition-duration: .2s;
+}
+
+.content .form .input .check input[type="checkbox"]:checked:hover {
+  border-color: var(--textColor);
+  color: var(--textColor);
+  transition-duration: .2s;
+}
+
+.content .form .input .check input[type="checkbox"]:checked:hover::after {
+  color: var(--textColor);
+  transition-duration: .2s;
+}
+
+.content .form .input .check input[type="checkbox"]:checked:hover+span {
+  color: var(--textColor);
+  transition-duration: .2s;
+}
+
+.content .button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.content .button button {
+  width: fit-content;
+  height: 6.84vh;
+  padding-inline: 3vw;
+  font-size: 2.22vw;
+  font-weight: 600;
+  border-radius: 5.86vw;
+  background-color: var(--darkRed);
+  border: none;
+  color: var(--textColor);
+  transition-duration: .2s;
+}
+
+.content .button button:hover {
+  transition-duration: .2s;
+  color: var(--darkRed);
+  background-color: var(--textColor);
+  box-shadow: -3px 2px 5px 5px var(--darkRed);
+  cursor: pointer;
+}
+
+.content .button a {
+  text-decoration: none;
+  color: var(--textColor);
+  font-size: 0.9vw;
+}
+
+.content .button a span {
+  color: var(--link);
+  transition-duration: .2s;
+}
+
+.content .button a span:hover {
+  text-decoration: underline;
+  transition-duration: .2s;
+}
+
+.erro,
+.aguardando {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.4);
+  /* fundo escurecido */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 10000;
+  backdrop-filter: blur(4px);
+}
+
+.erro .popup-erro,
+.aguardando .popupAguardando {
+  background-color: var(--darkRed);
+  width: 40vw;
+  padding: 2.5vw;
+  border-radius: 2vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 0 0 1.5vw rgba(0, 0, 0, 0.3);
+  animation: fadeInScale 0.4s ease;
+  position: relative;
+}
+
+.erro .popup-erro p,
+.aguardando .popupAguardando p {
+  color: var(--textColor);
+  font-size: 1.2vw;
+  text-align: center;
+  margin-top: 2vh;
+}
+
+.erro .popup-erro button,
+.aguardando .popupAguardando button {
+
+  position: absolute;
+  top: 1vw;
+  right: 1vw;
+  border: none;
+  background: none;
+  color: var(--textColor);
+  font-size: 1.5vw;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.erro .popup-erro button:hover {
+  transform: scale(1.2);
+}

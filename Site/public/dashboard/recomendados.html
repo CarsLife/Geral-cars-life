@@ -11,13 +11,13 @@
 
 <body onload="carregar()">
   <header class="navVertical">
-    <a href="../index.html"><img src="../assets/logoDash.svg" alt=""></a>
+    <button onclick="Sair()" class="logo"><img src="../assets/logoDash.svg" alt=""></button>
     <section class="buttons">
       <a href="./inicio.html">Início</a>
       <a class="selection" href="./recomendados.html">Carros Recomendados</a>
-      <a href="./informacoes.html">Minhas Informações</a>
+      <a href="./Informacoes.html">Minhas Informações</a>
     </section>
-    <button onclick="Sair()">Sair</button>
+    <button onclick="Sair()" class="Sair">Sair</button>
   </header>
 
   <div class="content">
@@ -31,12 +31,8 @@
   </div>
 </body>
 
+<script src="./js/dashboard.js"></script>
 <script>
-  function Sair() {
-    sessionStorage.clear;
-    window.location = "../index.html"
-  }
-
   function cardSuperior() {
     const prioridadesList = [];
     if (sessionStorage.ECO_PREFERENCIAS == 1) prioridadesList.push("Ecônomia");

@@ -113,10 +113,13 @@
                     console.log(json);
                     console.log(json.carrosRecomendados);
                     // Dados do usuário
+                    const data = new Date(json.nascimento);
+                    const dtNascimento = data.toISOString().split("T")[0];
                     sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.SENHA_USUARIO = json.senha;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.NASCIMENTO_USUARIO = json.nascimento;
+                    sessionStorage.NASCIMENTO_USUARIO = dtNascimento;
                     sessionStorage.CADASTRO_USUARIO = json.cadastro;
                     // Preferencias
                     sessionStorage.ORCMIN_PREFERENCIAS = json.orcMin;

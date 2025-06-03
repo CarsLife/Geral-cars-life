@@ -1,5 +1,3 @@
-@import url('./color.css');
-
 .navVertical {
   width: 23.85vw;
   background-color: var(--backgroundSelect);
@@ -10,38 +8,56 @@
   justify-content: space-around;
 }
 
-.navVertical a img {
+.navVertical .logo {
+  background: none;
+  border: none;
   width: 13.9vw;
-  height: 7.8vh;
+  transition-duration: .24s;
 }
 
-.navVertical section {
+.navVertical .logo:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition-duration: .24s;
+}
+
+.navVertical .logo img {
+  width: 13.9vw;
+  height: 7.8vh;
+  cursor: pointer;
+}
+
+.navVertical .buttons {
   display: flex;
   flex-direction: column;
   align-items: start;
-  margin-left: 3vw;
   gap: 1.5vh;
+  width: 18.75vw;
+  padding-left: 3vw;
 }
 
-.navVertical section a {
-  width: 13vw;
-  height: fit-content;
+.navVertical .buttons a {
+  box-sizing: border-box;
+
   border-radius: 20px;
   text-decoration: none;
   color: var(--textColor);
   font-size: 1.5vw;
   font-weight: 600;
+  width: 100%;
+  padding-block: 1vh;
+  padding-inline: 2vw;
 }
 
-.navVertical section .selection {
+.navVertical .buttons .selection {
   background-color: var(--textColor);
   color: var(--placeHolder);
   height: fit-content;
-  padding-block: 1vh;
-  padding-inline: 1vw;
+  text-align: start;
 }
 
-.navVertical button {
+
+.navVertical .Sair {
   background-color: var(--backgroundDash);
   color: var(--textColor);
   border-radius: 20px;
@@ -58,7 +74,7 @@
   transition-duration: .24s;
 }
 
-.navVertical button:hover {
+.navVertical .Sair:hover {
   background-color: var(--hoverButton);
   cursor: pointer;
   transform: scale(1.1);

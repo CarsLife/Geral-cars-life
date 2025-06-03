@@ -230,12 +230,155 @@ function cadastrarPrioridades(req, res) {
     }
 }
 
+function alterarUsuario(req, res) {
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+    var nasc = req.body.nascServer;
+    var idUsuario = req.body.idServer
 
+
+    if (nome == undefined) {
+        res.status(400).send("Seu nome está undefined!");
+    } else if (email == undefined) {
+        res.status(400).send("Seu email está undefined!");
+    } else if (senha == undefined) {
+        res.status(400).send("Sua senha está undefined!");
+    } else if (nasc == undefined) {
+        res.status(400).send("Sua data de nascimento está undefined!");
+    } else if(idUsuario == undefined){
+        res.status(400).send("O id do usuário está undefined!");
+    } else {
+        usuarioModel.alterarUsuario(nome, email, senha, nasc, idUsuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                    
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastroUsuario! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function alterarPreferencias(req, res) {
+    var orcamentoMin = req.body.orcamentoMinServer;
+    var orcamentoMax = req.body.orcamentoMaxServer;
+    var cambio = req.body.cambioServer;
+    var anoMin = req.body.anoMinServer;
+    var idUsuario = req.body.idServer
+
+    if (orcamentoMin == undefined) {
+        res.status(400).send("Seu orçamento mínimo está undefined!");
+    } else if (orcamentoMax == undefined) {
+        res.status(400).send("Seu orçamento maximo está undefined!");
+    } else if (cambio == undefined) {
+        res.status(400).send("Seu tipo de cambio está undefined!");
+    } else if (anoMin == undefined) {
+        res.status(400).send("Seu ano minimo está undefined!");
+    } else if (idUsuario == undefined) {
+        res.status(400).send("O id do usuario está undefined!");
+    } else {
+
+        usuarioModel.alterarPreferencias(orcamentoMin, orcamentoMax, cambio, anoMin, idUsuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastroPreferencias! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function alterarTipo(req, res) {
+    var trabalho = req.body.trabalhoServer;
+    var dia = req.body.diaServer;
+    var viagem = req.body.viagemServer;
+    var trabalhoCar = req.body.trabalhoCarServer;
+    var idUsuario = req.body.idServer
+
+
+    if (trabalho == undefined || dia == undefined || viagem == undefined || trabalhoCar == undefined) {
+        res.status(400).send("Seu tipo de uso está undefined!")
+    } else if (idUsuario == undefined) {
+        res.status(400).send("O idUsuario está undefined!")
+    } else {
+
+        usuarioModel.alterarTipo(trabalho, dia, viagem, trabalhoCar, idUsuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastroTipo! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function alterarPrioridades(req, res) {
+    var economia = req.body.economiaServer;
+    var manutencao = req.body.manutencaoServer;
+    var seguranca = req.body.segurancaServer;
+    var design = req.body.designServer;
+    var espaco = req.body.espacoServer;
+    var revenda = req.body.revendaServer;
+    var desempenho = req.body.desempenhoServer;
+    var idUsuario = req.body.idServer
+
+
+    if (economia == undefined || manutencao == undefined || seguranca == undefined || design == undefined || espaco == undefined || revenda == undefined || desempenho == undefined) {
+        res.status(400).send("Suas prioridades estão undefined!")
+    } else if (idUsuario == undefined) {
+        res.status(400).send("O idUsuario está undefined!")
+    } else {
+        usuarioModel.alterarPrioridades(economia, manutencao, seguranca, design, espaco, revenda, desempenho, idUsuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastroPrioridades! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
 
 module.exports = {
     autenticar,
     cadastrarUsuario,
     cadastrarPreferencias,
     cadastrarTipo,
-    cadastrarPrioridades
+    cadastrarPrioridades,
+    alterarUsuario,
+    alterarPreferencias,
+    alterarTipo,
+    alterarPrioridades,
 }

@@ -7,10 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cars Life | Dashboard</title>
     <link rel="shortcut icon" href="../assets/logo.svg" type="image/x-icon">
-    <link rel="stylesheet" href="../css/dashboards.css" />
+    <link rel="stylesheet" href="../css/inicio.css" />
 
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
@@ -18,13 +20,13 @@
 
 <body onload="carregar()">
     <header class="navVertical">
-        <a href="../index.html"><img src="../assets/logoDash.svg" alt=""></a>
+        <button onclick="Sair()" class="logo"><img src="../assets/logoDash.svg" alt=""></button>
         <section class="buttons">
             <a class="selection" href="./inicio.html">Início</a>
             <a href="./recomendados.html">Carros Recomendados</a>
             <a href="./Informacoes.html">Minhas Informações</a>
         </section>
-        <button onclick="Sair()">Sair</button>
+        <button onclick="Sair()" class="Sair">Sair</button>
     </header>
     <div class="content">
         <div id="div_superior">
@@ -62,7 +64,7 @@
 
         <div class="cardGrafico">
             <div class="card azul">
-                <select name="" id="selectCarro1" onchange="mudarCarro()"></select>
+                <select id="selectCarro1" onchange="mudarCarro()"></select>
                 <section class="infoPrin" id="infoCar1"></section>
                 <section class="info azul" id="infoAzul"></section>
             </div>
@@ -70,7 +72,7 @@
             <canvas id="radarChart"></canvas>
 
             <div class="card amarelo">
-                <select name="" id="selectCarro2" onchange="mudarCarro()"></select>
+                <select id="selectCarro2" onchange="mudarCarro()"></select>
                 <section class="infoPrin" id="infoCar2"></section>
                 <section class="info amarelo" id="infoAmarelo"></section>
             </div>
@@ -81,7 +83,7 @@
 </body>
 
 </html>
-
+<script src="./js/dashboard.js"></script>
 <script>
     const data = {
         labels: ["Ano", "Preço", "Consumo", "Espaço", "Potência"],
@@ -147,10 +149,7 @@
 
     const radarChart = new Chart(document.getElementById('radarChart'), config);
 
-    function Sair() {
-        sessionStorage.clear;
-        window.location = "../index.html"
-    }
+
 
     function carregar() {
         const prioridadesList = [];
