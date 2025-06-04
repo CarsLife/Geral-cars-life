@@ -2,178 +2,188 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CarsLife | Login</title>
-    <script src="./js/sessao.js"></script>
-    <link rel="icon" href="./assets/logo.svg" />
-    <link rel="stylesheet" href="./css/login.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CarsLife | Login</title>
+  <script src="./js/sessao.js"></script>
+  <link rel="icon" href="./assets/logo.svg" />
+  <link rel="stylesheet" href="./css/login.css">
 </head>
 
 <body>
-    <header>
-        <div class="navBar">
-            <a href="./index.html"><img src="./assets/logo.svg" alt="" style="width: 5.69vw;"></a>
-            <section class="routes">
-                <a href="./index.html" class="text">Home</a>
-                <a href="./sobre.html" class="text">Sobre</a>
-                <a href="./login.html"><img src="./assets/profile.svg" alt="login"></a>
-            </section>
-        </div>
-    </header>
-    <div id="erro" class="erro" style="display: none;">
-        <div id="cardErro" class="popup-erro">
-            <button onclick="Fechar()">X</button>
-            <p id="textoErro">Hello world</p>
-        </div>
+  <header>
+    <div class="navBar">
+      <a href="./index.html"><img src="./assets/logo.svg" alt="" style="width: 5.69vw;"></a>
+      <section class="routes">
+        <a href="./index.html" class="text">Home</a>
+        <a href="./sobre.html" class="text">Sobre</a>
+        <a href="./login.html"><img src="./assets/profile.svg" alt="login"></a>
+      </section>
     </div>
-    <div class="container">
-        <h1>Bem vindo de volta!</h1>
-        <div class="form">
-            <section class="input">
-                <p>Digite seu e-mail:</p>
-                <input type="text" id="iptEmail" placeholder="example@example.com">
-            </section>
-            <section class="input">
-                <p>Digite sua senha:</p>
-                <input type="password" id="iptSenha" placeholder="********">
-            </section>
-            <section class="button">
-                <button onclick="LogIn()">LogIn</button>
-                <a href="./cadastro.html">Ainda não possuí uma conta? <span>Cadastre-se</span></a>
-            </section>
-        </div>
-    </div>
+  </header>
 
-    <div class="footer">
-        <div class="footerContent">
-            <div class="secoes">
-                <section class="sessao sobre">
-                    <h2>Sobre</h2>
-                    <p>Ajudamos jovens a encontrar o carro ideal com tecnologia, análise e transparência.</p>
-                </section>
-                <section class="sessao atalhos">
-                    <h2>Atalhos</h2>
-                    <section class="redirecao">
-                        <a href="./index.html">Início</a>
-                        <a href="./sobre.html">Sobre</a>
-                        <a href="./login.html">Login</a>
-                        <a href="./cadastro.html">Cadastre-se</a>
-                        <a href="https://www.webmotors.com.br">Comprar Carros</a>
-                    </section>
-                </section>
-            </div>
-            <p class="direitos">© 2025 CarsLife. Todos os direitos reservados.</p>
-        </div>
+  <div id="aguardar" class="aguardando" style="display: none;">
+    <div id="cardAguardar" class="popupAguardando">
+      <button onclick="finalizarAguardar()">X</button>
+      <img src="./assets/loading.gif" alt="" width="40vw" height="40vh">
+      <p>Loading...</p>
     </div>
+  </div>
+  <div id="erro" class="erro" style="display: none;">
+    <div id="cardErro" class="popup-erro">
+      <button onclick="Fechar()">X</button>
+      <p id="textoErro">Hello world</p>
+    </div>
+  </div>
+  <div class="container">
+    <h1>Bem vindo de volta!</h1>
+    <div class="form">
+      <section class="input">
+        <p>Digite seu e-mail:</p>
+        <input type="text" id="iptEmail" placeholder="example@example.com">
+      </section>
+      <section class="input">
+        <p>Digite sua senha:</p>
+        <input type="password" id="iptSenha" placeholder="********">
+      </section>
+      <section class="button">
+        <button onclick="LogIn()">LogIn</button>
+        <a href="./cadastro.html">Ainda não possuí uma conta? <span>Cadastre-se</span></a>
+      </section>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footerContent">
+      <div class="secoes">
+        <section class="sessao sobre">
+          <h2>Sobre</h2>
+          <p>Ajudamos jovens a encontrar o carro ideal com tecnologia, análise e transparência.</p>
+        </section>
+        <section class="sessao atalhos">
+          <h2>Atalhos</h2>
+          <section class="redirecao">
+            <a href="./index.html">Início</a>
+            <a href="./sobre.html">Sobre</a>
+            <a href="./login.html">Login</a>
+            <a href="./cadastro.html">Cadastre-se</a>
+            <a href="https://www.webmotors.com.br">Comprar Carros</a>
+          </section>
+        </section>
+      </div>
+      <p class="direitos">© 2025 CarsLife. Todos os direitos reservados.</p>
+    </div>
+  </div>
 </body>
 
 </html>
 
 
 <script>
-    function LogIn() {
-        // aguardar();
+  function LogIn() {
+    aguardar();
 
-        var emailVar = iptEmail.value;
-        var senhaVar = iptSenha.value;
+    var emailVar = iptEmail.value;
+    var senhaVar = iptSenha.value;
 
-        if (emailVar == "" || senhaVar == "") {
-            erro.style.display = "flex";
-            textoErro.innerHTML = `Algum dos campos em branco`;
-            setInterval(sumirMensagem, 5000);
-            return false;
-        }
-        else {
-            erro.style.display = "flex";
-            textoErro.innerHTML = `Credencias sendo validadas`;
-            setInterval(sumirMensagem, 5000);
-        }
-
-        console.log("E-mail: ", emailVar);
-        console.log("Senha: ", senhaVar);
-
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
-            if (resposta.ok) {
-                console.log(resposta + "Tudo ok");
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(json.carrosRecomendados);
-                    // Dados do usuário
-                    const data = new Date(json.nascimento);
-                    const dtNascimento = data.toISOString().split("T")[0];
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.SENHA_USUARIO = json.senha;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.NASCIMENTO_USUARIO = dtNascimento;
-                    sessionStorage.CADASTRO_USUARIO = json.cadastro;
-                    // Preferencias
-                    sessionStorage.ORCMIN_PREFERENCIAS = json.orcMin;
-                    sessionStorage.ORCMAX_PREFERENCIAS = json.orcMax;
-                    sessionStorage.CAMBIO_PREFERENCIAS = json.cambio;
-                    sessionStorage.ANOMIN_PREFERENCIAS = json.anoMin;
-                    sessionStorage.TRABALHO_PREFERENCIAS = json.trabalho;
-                    sessionStorage.DIADIA_PREFERENCIAS = json.diadia;
-                    sessionStorage.VIAGEM_PREFERENCIAS = json.viagem;
-                    sessionStorage.TRABALHOCAR_PREFERENCIAS = json.trabalhoCar;
-                    sessionStorage.ECO_PREFERENCIAS = json.eco;
-                    sessionStorage.MANUTENCAO_PREFERENCIAS = json.manutencao;
-                    sessionStorage.SEGURANCA_PREFERENCIAS = json.seguranca;
-                    sessionStorage.DESIGN_PREFERENCIAS = json.design;
-                    sessionStorage.ESPACO_PREFERENCIAS = json.espaco;
-                    sessionStorage.REVENDA_PREFERENCIAS = json.revenda;
-                    sessionStorage.DESEMPENHO_PREFERENCIAS = json.desempenho;
-                    sessionStorage.CARROS_RECOMENDADOS = JSON.stringify(json.carrosRecomendados);
-
-
-
-                    setTimeout(function () {
-                        console.log("Esses são os carros recomendados", sessionStorage.CARROS_RECOMENDADOS)
-                        window.location = "./dashboard/inicio.html";
-                    }, 2000); // apenas para exibir o loading
-
-                });
-
-            } else {
-                setTimeout(erroLogin, 2000)
-                setInterval(sumirMensagem, 5000);
-
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
+    if (emailVar == "" || senhaVar == "") {
+      setTimeout(() => {
+        finalizarAguardar();
+        erro.style.display = "flex";
+        textoErro.innerHTML = `Preencha todos os campos`;
+      }, 1000);
+      setTimeout(sumirMensagem, 5000);
+      return;
+    }
+    else {
+      setTimeout(() => {
+        finalizarAguardar();
+        erro.style.display = "flex";
+        textoErro.innerHTML = `Credencias sendo validadas...`;
+      }, 1000);
     }
 
-    function sumirMensagem() {
-        erro.style.display = "none";
-    }
+    console.log("E-mail: ", emailVar);
+    console.log("Senha: ", senhaVar);
 
-    function erroLogin() {
-        erro.style.display = "flex",
-            textoErro.innerHTML = `Houve um erro ao realizar o login, tente novamente`
-        console.log("Houve um erro ao tentar realizar o login!");
-    }
+    fetch("/usuarios/autenticar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        emailServer: emailVar,
+        senhaServer: senhaVar
+      })
+    }).then(function (resposta) {
+      console.log("ESTOU NO THEN DO entrar()!")
+
+      if (resposta.ok) {
+        console.log(resposta.ok + " Tudo ok");
+        console.log(resposta.status)
+        resposta.json().then(json => {
+          console.log(json);
+          console.log(json.carrosRecomendados);
+
+          const data = new Date(json.nascimento);
+          const dtNascimento = data.toISOString().split("T")[0];
+          sessionStorage.EMAIL_USUARIO = json.email;
+          sessionStorage.SENHA_USUARIO = json.senha;
+          sessionStorage.NOME_USUARIO = json.nome;
+          sessionStorage.ID_USUARIO = json.id;
+          sessionStorage.NASCIMENTO_USUARIO = dtNascimento;
+          sessionStorage.CADASTRO_USUARIO = json.cadastro;
+
+          sessionStorage.ORCMIN_PREFERENCIAS = json.orcMin;
+          sessionStorage.ORCMAX_PREFERENCIAS = json.orcMax;
+          sessionStorage.CAMBIO_PREFERENCIAS = json.cambio;
+          sessionStorage.ANOMIN_PREFERENCIAS = json.anoMin;
+          sessionStorage.TRABALHO_PREFERENCIAS = json.trabalho;
+          sessionStorage.DIADIA_PREFERENCIAS = json.diadia;
+          sessionStorage.VIAGEM_PREFERENCIAS = json.viagem;
+          sessionStorage.TRABALHOCAR_PREFERENCIAS = json.trabalhoCar;
+          sessionStorage.ECO_PREFERENCIAS = json.eco;
+          sessionStorage.MANUTENCAO_PREFERENCIAS = json.manutencao;
+          sessionStorage.SEGURANCA_PREFERENCIAS = json.seguranca;
+          sessionStorage.DESIGN_PREFERENCIAS = json.design;
+          sessionStorage.ESPACO_PREFERENCIAS = json.espaco;
+          sessionStorage.REVENDA_PREFERENCIAS = json.revenda;
+          sessionStorage.DESEMPENHO_PREFERENCIAS = json.desempenho;
+          sessionStorage.CARROS_RECOMENDADOS = JSON.stringify(json.carrosRecomendados);
+
+          setTimeout(function () {
+            setTimeout(sumirMensagem, 5000);
+            console.log("Esses são os carros recomendados", sessionStorage.CARROS_RECOMENDADOS)
+            window.location = "./dashboard/inicio.html";
+          }, 2000);
+
+        });
+
+      } else {
+        setTimeout(erroLogin, 2000)
+        setTimeout(sumirMensagem, 5000);
+
+
+        resposta.text().then(texto => {
+          console.error(texto);
+          finalizarAguardar(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+      console.log("Esses são os carros recomendados", sessionStorage.CARROS_RECOMENDADOS)
+    })
+
+    return false;
+  }
+
+
+  function erroLogin() {
+    erro.style.display = "flex",
+    textoErro.innerHTML = `E-mail ou senha incorretos`
+    console.log("E-mail ou senha incorretos!");
+  }
 
 </script>

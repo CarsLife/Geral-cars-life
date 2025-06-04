@@ -15,7 +15,6 @@
         rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/sessao.js"></script>
-    <script src="../js/alerta.js"></script>
 </head>
 
 <body onload="carregar()">
@@ -110,7 +109,7 @@
         type: 'radar',
         data: data,
         options: {
-            responsive: true,
+            responsive: false,
             scales: {
                 r: {
                     angleLines: { color: '#000' },
