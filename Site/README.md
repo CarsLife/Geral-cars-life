@@ -1,5 +1,4 @@
-<img src="https://media.discordapp.net/attachments/1358600625859858664/1379795510000484372/Logo.pngex=68418a34&is=684038b4&hm=7af02e930393543388fb27e6959372b7654cd7fd23eff27821b95c34c76fc5aa&=&format=webp&quality=lossless" width="500px">
-
+<img src="https://media.discordapp.net/attachments/1358600625859858664/1379795510000484372/Logo.png?ex=68418a34&is=684038b4&hm=7af02e930393543388fb27e6959372b7654cd7fd23eff27821b95c34c76fc5aa" width="500px">
 # Cars Life
 
 **Cars Life** é uma aplicação web desenvolvida para ajudar jovens que estão buscando comprar o seu **primeiro carro**.
