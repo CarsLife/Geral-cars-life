@@ -1,4 +1,4 @@
-<img src="[https://user-images.githubusercontent.com/46379117/192358781-9ca879e4-e55e-4d0d-b876-f9a4a2ed9ae8.png](https://cdn.discordapp.com/attachments/1358600625859858664/1379795510000484372/Logo.png?ex=68418a34&is=684038b4&hm=7af02e930393543388fb27e6959372b7654cd7fd23eff27821b95c34c76fc5aa&)" width="500px">
+<img src="https://media.discordapp.net/attachments/1358600625859858664/1379795510000484372/Logo.png" width="500px">
 
 # Cars Life
 
