@@ -4,16 +4,16 @@
 
 **Cars Life** é uma aplicação web desenvolvida para ajudar jovens que estão buscando comprar o seu **primeiro carro**.
 
-Através de um formulário simples, o usuário informa suas preferências (como orçamento, tipo de carro, consumo desejado, etc.) e a aplicação recomenda veículos que melhor se encaixam nesse perfil.  
+Através de um formulário simples, o usuário informa suas preferências (como orçamento, ano de fabricação minimo, tipo de uso, etc.) e a aplicação recomenda veículos que melhor se encaixam no seu perfil.  
 
 Além das recomendações, o Cars Life oferece **dashboards comparativos**, onde é possível visualizar e comparar diferentes modelos de carros com base em critérios como:
 
-- Preço
-- Consumo de combustível
 - Potência
-- Tipo (hatch, sedan, SUV, etc.)
-- Ano de fabricação
+- Ano
+- Preço
+- Espaço
+- Consumo 
 
-O objetivo do projeto é facilitar a **tomada de decisão com base em dados reais**, tornando o processo de compra mais **informado, fácil e confiável**, mesmo para quem não entende muito de carros.
+O objetivo do projeto é facilitar a **tomada de decisão**, tornando o processo de compra mais **fácil e confiável**, mesmo para quem não entende muito de carros.
 
-> Projeto desenvolvido como parte da disciplina de **Visualização de Dados na Web**, no 1º semestre de Ciência da Computação da SPTech.
+> Projeto desenvolvido com base na api <a href="https://github.com/BandTec/web-data-viz.git">**Web-data-viz** </a>, no 1º semestre de Ciência da Computação da SPTech.
