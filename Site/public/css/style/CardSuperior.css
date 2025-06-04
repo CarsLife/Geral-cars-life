@@ -7,14 +7,13 @@
   font-weight: 800;
 }
 
-
 .cardSuperior {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   background: var(--backgroundCard);
-  border-radius: 20px;
-  box-shadow: 0 0 40px var(--backgroundCard);
+  border-radius: 2.22vw;
+  box-shadow: 0 0 4.44vw var(--backgroundCard);
   width: 70.49vw;
   gap: 3vw;
 }

@@ -2,81 +2,81 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cars Life | Dashboard</title>
-    <link rel="shortcut icon" href="../assets/logo.svg" type="image/x-icon">
-    <link rel="stylesheet" href="../css/inicio.css" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cars Life | Dashboard</title>
+  <link rel="shortcut icon" href="../assets/logo.svg" type="image/x-icon">
+  <link rel="stylesheet" href="../css/inicio.css" />
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../js/sessao.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../js/sessao.js"></script>
 </head>
 
 <body onload="carregar()">
-    <header class="navVertical">
-        <button onclick="Sair()" class="logo"><img src="../assets/logoDash.svg" alt=""></button>
-        <section class="buttons">
-            <a class="selection" href="./inicio.html">Início</a>
-            <a href="./recomendados.html">Carros Recomendados</a>
-            <a href="./Informacoes.html">Minhas Informações</a>
-        </section>
-        <button onclick="Sair()" class="Sair">Sair</button>
-    </header>
-    <div class="content">
-        <div id="div_superior">
-            <h2>Bem vindo de volta, <span id="nome">NOME</span></h2>
-            <div class="cardSuperior">
-                <div class="orcamento superior">
-                    <h3>Orçamento</h3>
-                    <section class="informacao">
-                        <p id="prefMin">R$ 50.000 -</p>
-                        <p id="prefMax">R$70.000</p>
-                    </section>
-                </div>
-
-                <div class="cambio superior">
-                    <h3>Câmbio</h3>
-                    <section class="informacao">
-                        <p id="prefCambio">Manual</p>
-                    </section>
-                </div>
-                <div class="anoMin superior">
-                    <h3>Ano Minimo</h3>
-                    <section class="informacao">
-                        <p>2015</p>
-                    </section>
-                </div>
-                <div class="prioridade superior">
-                    <h3>Prioridade(s)</h3>
-                    <section class="informacao">
-                        <p>Espaço</p>
-                    </section>
-                </div>
-            </div>
+  <header class="navVertical">
+    <button onclick="Sair()" class="logo"><img src="../assets/logoDash.svg" alt=""></button>
+    <section class="buttons">
+      <a class="selection" href="./inicio.html">Início</a>
+      <a href="./recomendados.html">Carros Recomendados</a>
+      <a href="./Informacoes.html">Minhas Informações</a>
+    </section>
+    <button onclick="Sair()" class="Sair">Sair</button>
+  </header>
+  <div class="content">
+    <div id="div_superior">
+      <h2>Bem vindo de volta, <span id="nome">NOME</span></h2>
+      <div class="cardSuperior">
+        <div class="orcamento superior">
+          <h3>Orçamento</h3>
+          <section class="informacao">
+            <p id="prefMin">R$ 50.000 -</p>
+            <p id="prefMax">R$70.000</p>
+          </section>
         </div>
 
-
-        <div class="cardGrafico">
-            <div class="card azul">
-                <select id="selectCarro1" onchange="mudarCarro()"></select>
-                <section class="infoPrin" id="infoCar1"></section>
-                <section class="info azul" id="infoAzul"></section>
-            </div>
-
-            <canvas id="radarChart"></canvas>
-
-            <div class="card amarelo">
-                <select id="selectCarro2" onchange="mudarCarro()"></select>
-                <section class="infoPrin" id="infoCar2"></section>
-                <section class="info amarelo" id="infoAmarelo"></section>
-            </div>
+        <div class="cambio superior">
+          <h3>Câmbio</h3>
+          <section class="informacao">
+            <p id="prefCambio">Manual</p>
+          </section>
         </div>
+        <div class="anoMin superior">
+          <h3>Ano Minimo</h3>
+          <section class="informacao">
+            <p>2015</p>
+          </section>
+        </div>
+        <div class="prioridade superior">
+          <h3>Prioridade(s)</h3>
+          <section class="informacao">
+            <p>Espaço</p>
+          </section>
+        </div>
+      </div>
     </div>
+
+
+    <div class="cardGrafico">
+      <div class="card azul">
+        <select id="selectCarro1" onchange="mudarCarro()"></select>
+        <section class="infoPrin" id="infoCar1"></section>
+        <section class="info azul" id="infoAzul"></section>
+      </div>
+
+      <canvas id="radarChart" class="grafico"></canvas>
+
+      <div class="card amarelo">
+        <select id="selectCarro2" onchange="mudarCarro()"></select>
+        <section class="infoPrin" id="infoCar2"></section>
+        <section class="info amarelo" id="infoAmarelo"></section>
+      </div>
+    </div>
+  </div>
 
 
 </body>
@@ -84,91 +84,91 @@
 </html>
 <script src="./js/dashboard.js"></script>
 <script>
-    const data = {
-        labels: ["Ano", "Preço", "Consumo", "Espaço", "Potência"],
-        datasets: [
-            {
-                label: "Onix",
-                data: [100.0, 100.0, 100.0, 20.0, 100.0],
-                backgroundColor: "rgba(56, 164, 232, 0.1)",
-                fill: true,
-                borderColor: "rgba(56, 164, 232, 1)"
+  const data = {
+    labels: ["Ano", "Preço", "Consumo", "Espaço", "Potência"],
+    datasets: [
+      {
+        label: "Onix",
+        data: [100.0, 100.0, 100.0, 20.0, 100.0],
+        backgroundColor: "rgba(56, 164, 232, 0.1)",
+        fill: true,
+        borderColor: "rgba(56, 164, 232, 1)"
 
-            },
-            {
-                label: "Golf",
-                data: [50.0, 58.11, 24.0, 100.0, 100.0],
-                backgroundColor: "rgba(69, 68, 1, 0.1)",
-                fill: true,
-                borderColor: "rgba(69, 68, 1, 1)"
+      },
+      {
+        label: "Golf",
+        data: [50.0, 58.11, 24.0, 100.0, 100.0],
+        backgroundColor: "rgba(69, 68, 1, 0.1)",
+        fill: true,
+        borderColor: "rgba(69, 68, 1, 1)"
+      }
+    ]
+  };
+
+  const config = {
+    type: 'radar',
+    data: data,
+    options: {
+      responsive: false,
+      scales: {
+        r: {
+          angleLines: { color: '#000' },
+          grid: { color: '#000' },
+          pointLabels: {
+            color: 'white',
+            font: {
+              family: 'montserrat',
+              size: 14,
+              weight: 'bold'
             }
-        ]
-    };
-
-    const config = {
-        type: 'radar',
-        data: data,
-        options: {
-            responsive: false,
-            scales: {
-                r: {
-                    angleLines: { color: '#000' },
-                    grid: { color: '#000' },
-                    pointLabels: {
-                        color: 'white',
-                        font: {
-                            family: 'montserrat',
-                            size: 14,
-                            weight: 'bold'
-                        }
-                    },
-                    ticks: {
-                        color: '#fff',
-                        stepSize: 20,
-                        max: 100,
-                        showLabelBackdrop: false
-                    },
-                    backgroundColor: "#1B1818"
-                }
-            },
-            plugins: {
-                legend: {
-                    labels: {
-                        color: '#fff'
-                    }
-                }
-            },
-            elements: {
-                line: {
-                    borderWidth: 1
-                }
-            }
+          },
+          ticks: {
+            color: '#fff',
+            stepSize: 20,
+            max: 100,
+            showLabelBackdrop: false
+          },
+          backgroundColor: "#1B1818"
         }
-    };
-
-    const radarChart = new Chart(document.getElementById('radarChart'), config);
-
-
-
-    function carregar() {
-        const prioridadesList = [];
-        if (sessionStorage.ECO_PREFERENCIAS == 1) prioridadesList.push("Ecônomia");
-        if (sessionStorage.MANUTENCAO_PREFERENCIAS == 1) prioridadesList.push("Manutenção");
-        if (sessionStorage.SEGURANCA_PREFERENCIAS == 1) prioridadesList.push("Segurança");
-        if (sessionStorage.DESIGN_PREFERENCIAS == 1) prioridadesList.push("Design");
-        if (sessionStorage.ESPACO_PREFERENCIAS == 1) prioridadesList.push("Espaço");
-        if (sessionStorage.REVENDA_PREFERENCIAS == 1) prioridadesList.push("Facilidade de revenda");
-        if (sessionStorage.DESEMPENHO_PREFERENCIAS == 1) prioridadesList.push("Desempenho");
-
-        let prioridadesText = `${prioridadesList[0]}`;
-        for (let i = 1; i < prioridadesList.length; i++) {
-            prioridadesText += `, ${prioridadesList[i]}`
+      },
+      plugins: {
+        legend: {
+          labels: {
+            color: '#fff'
+          }
         }
-        const carrosRecomendados = JSON.parse(sessionStorage.CARROS_RECOMENDADOS);
+      },
+      elements: {
+        line: {
+          borderWidth: 1
+        }
+      }
+    }
+  };
 
-        console.log(carrosRecomendados)
+  const radarChart = new Chart(document.getElementById('radarChart'), config);
 
-        div_superior.innerHTML = `
+
+
+  function carregar() {
+    const prioridadesList = [];
+    if (sessionStorage.ECO_PREFERENCIAS == 1) prioridadesList.push("Ecônomia");
+    if (sessionStorage.MANUTENCAO_PREFERENCIAS == 1) prioridadesList.push("Manutenção");
+    if (sessionStorage.SEGURANCA_PREFERENCIAS == 1) prioridadesList.push("Segurança");
+    if (sessionStorage.DESIGN_PREFERENCIAS == 1) prioridadesList.push("Design");
+    if (sessionStorage.ESPACO_PREFERENCIAS == 1) prioridadesList.push("Espaço");
+    if (sessionStorage.REVENDA_PREFERENCIAS == 1) prioridadesList.push("Facilidade de revenda");
+    if (sessionStorage.DESEMPENHO_PREFERENCIAS == 1) prioridadesList.push("Desempenho");
+
+    let prioridadesText = `${prioridadesList[0]}`;
+    for (let i = 1; i < prioridadesList.length; i++) {
+      prioridadesText += `, ${prioridadesList[i]}`
+    }
+    const carrosRecomendados = JSON.parse(sessionStorage.CARROS_RECOMENDADOS);
+
+    console.log(carrosRecomendados)
+
+    div_superior.innerHTML = `
         <h2>Bem vindo de volta, <span id="nome">${sessionStorage.NOME_USUARIO}</span></h2>
             <div class="cardSuperior">
                 <div class="orcamento superior">
@@ -199,35 +199,35 @@
                 </div>
             </div>
         `;
-        selectCarro1.innerHTML = ""
-        selectCarro2.innerHTML = ""
-        for (let i = 0; i < carrosRecomendados.length; i++) {
+    selectCarro1.innerHTML = ""
+    selectCarro2.innerHTML = ""
+    for (let i = 0; i < carrosRecomendados.length; i++) {
 
-            selectCarro1.innerHTML += `
+      selectCarro1.innerHTML += `
             <option value="${i + 1}">${carrosRecomendados[i].modelo} ${carrosRecomendados[i].ano}</option>
         `
-            selectCarro2.innerHTML += `
+      selectCarro2.innerHTML += `
             <option value="${i + 1}">${carrosRecomendados[i].modelo} ${carrosRecomendados[i].ano}</option>
         `
-        }
-
-        mudarCarro()
     }
-    function mudarCarro() {
-        const carrosRecomendados = JSON.parse(sessionStorage.CARROS_RECOMENDADOS);
-        var idCarro1 = selectCarro1.value - 1;
-        var idCarro2 = selectCarro2.value - 1;
-        const car1 = carrosRecomendados[idCarro1];
-        const car2 = carrosRecomendados[idCarro2];
 
-        infoCar1.innerHTML = `
+    mudarCarro()
+  }
+  function mudarCarro() {
+    const carrosRecomendados = JSON.parse(sessionStorage.CARROS_RECOMENDADOS);
+    var idCarro1 = selectCarro1.value - 1;
+    var idCarro2 = selectCarro2.value - 1;
+    const car1 = carrosRecomendados[idCarro1];
+    const car2 = carrosRecomendados[idCarro2];
+
+    infoCar1.innerHTML = `
             <p>Potencia: <span>${carrosRecomendados[idCarro1].potenciaCV}cv</span></p>
             <p>Espaço: <span>${carrosRecomendados[idCarro1].portas} portas</span></p>
             <p>Consumo: <span>${carrosRecomendados[idCarro1].consumo}Km/l</span></p>
             <p>Preço: <span>R$ ${carrosRecomendados[idCarro1].preco}</span></p>
             <p>Ano: <span>${carrosRecomendados[idCarro1].ano}</span></p>
         `
-        infoAzul.innerHTML = `
+    infoAzul.innerHTML = `
             <p>Marca: <span>${carrosRecomendados[idCarro1].marca}</span></p>
             <p>Câmbio: <span>${carrosRecomendados[idCarro1].tipoCambio}</span></p>
             <p>Combustivel: <span>${carrosRecomendados[idCarro1].tipoCombustivel}</span></p>
@@ -235,14 +235,14 @@
             <p>Consumo Estrada: <span>${carrosRecomendados[idCarro1].consumoEstrada}km/l</span></p>
         `
 
-        infoCar2.innerHTML = `
+    infoCar2.innerHTML = `
             <p>Potencia: <span>${carrosRecomendados[idCarro2].potenciaCV}cv</span></p>
             <p>Espaço: <span>${carrosRecomendados[idCarro2].portas} portas</span></p>
             <p>Consumo: <span>${carrosRecomendados[idCarro2].consumo}Km/l</span></p>
             <p>Preço: <span>R$ ${carrosRecomendados[idCarro2].preco}</span></p>
             <p>Ano: <span>${carrosRecomendados[idCarro2].ano}</span></p>
         `
-        infoAmarelo.innerHTML = `
+    infoAmarelo.innerHTML = `
             <p>Marca: <span>${carrosRecomendados[idCarro2].marca}</span></p>
             <p>Câmbio: <span>${carrosRecomendados[idCarro2].tipoCambio}</span></p>
             <p>Combustivel: <span>${carrosRecomendados[idCarro2].tipoCombustivel}</span></p>
@@ -250,47 +250,47 @@
             <p>Consumo Estrada: <span>${carrosRecomendados[idCarro2].consumoEstrada}km/l</span></p>
         `
 
-        plotarGrafico(car1, car2)
+    plotarGrafico(car1, car2)
+  }
+  function plotarGrafico(car1, car2) {
+    const carrosRecomendados = JSON.parse(sessionStorage.CARROS_RECOMENDADOS);
+
+    const carrosTamanho = carrosRecomendados.length
+    let anoMin = Number(sessionStorage.ANOMIN_PREFERENCIAS)
+    let potenciaMax = Number(carrosRecomendados[0].potenciaCV)
+    let precoMax = Number(carrosRecomendados[0].preco)
+    let consumoMax = Number(carrosRecomendados[0].consumo)
+
+    for (let i = 0; i < carrosTamanho; i++) {
+      if (potenciaMax < Number(carrosRecomendados[i].potenciaCV)) {
+        potenciaMax = Number(carrosRecomendados[i].potenciaCV)
+      }
+      if (precoMax < Number(carrosRecomendados[i].preco)) {
+        precoMax = Number(carrosRecomendados[i].preco)
+      }
+      if (consumoMax < Number(carrosRecomendados[i].consumo)) {
+        consumoMax = Number(carrosRecomendados[i].consumo)
+      }
     }
-    function plotarGrafico(car1, car2) {
-        const carrosRecomendados = JSON.parse(sessionStorage.CARROS_RECOMENDADOS);
 
-        const carrosTamanho = carrosRecomendados.length
-        let anoMin = Number(sessionStorage.ANOMIN_PREFERENCIAS)
-        let potenciaMax = Number(carrosRecomendados[0].potenciaCV)
-        let precoMax = Number(carrosRecomendados[0].preco)
-        let consumoMax = Number(carrosRecomendados[0].consumo)
+    radarChart.data.datasets[0].label = `${car1.modelo}`;
+    radarChart.data.datasets[0].data = [
+      ((car1.ano - anoMin) / (2023 - anoMin)) * 100,
+      (car1.preco / precoMax) * 100,
+      (car1.consumo / consumoMax) * 100,
+      car1.portas * 25,
+      (car1.potenciaCV / potenciaMax) * 100
+    ];
 
-        for (let i = 0; i < carrosTamanho; i++) {
-            if (potenciaMax < Number(carrosRecomendados[i].potenciaCV)) {
-                potenciaMax = Number(carrosRecomendados[i].potenciaCV)
-            }
-            if (precoMax < Number(carrosRecomendados[i].preco)) {
-                precoMax = Number(carrosRecomendados[i].preco)
-            }
-            if (consumoMax < Number(carrosRecomendados[i].consumo)) {
-                consumoMax = Number(carrosRecomendados[i].consumo)
-            }
-        }
-
-        radarChart.data.datasets[0].label = `${car1.modelo}`;
-        radarChart.data.datasets[0].data = [
-            ((car1.ano - anoMin) / (2023 - anoMin)) * 100,
-            (car1.preco / precoMax) * 100,
-            (car1.consumo / consumoMax) * 100,
-            car1.portas * 25,
-            (car1.potenciaCV / potenciaMax) * 100
-        ];
-
-        radarChart.data.datasets[1].label = `${car2.modelo}`;
-        radarChart.data.datasets[1].data = [
-            ((car2.ano - anoMin) / (2023 - anoMin)) * 100,
-            (car2.preco / precoMax) * 100,
-            (car2.consumo / consumoMax) * 100,
-            car2.portas * 25,
-            (car2.potenciaCV / potenciaMax) * 100
-        ];
-        radarChart.update();
-    }
+    radarChart.data.datasets[1].label = `${car2.modelo}`;
+    radarChart.data.datasets[1].data = [
+      ((car2.ano - anoMin) / (2023 - anoMin)) * 100,
+      (car2.preco / precoMax) * 100,
+      (car2.consumo / consumoMax) * 100,
+      car2.portas * 25,
+      (car2.potenciaCV / potenciaMax) * 100
+    ];
+    radarChart.update();
+  }
 
 </script>

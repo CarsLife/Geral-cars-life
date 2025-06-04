@@ -30,7 +30,7 @@ app.use("/usuarios", usuarioRouter);
 app.use("/preferencia", preferenciaRouter);
 
 app.listen(PORTA_APP, function () {
-    console.log(`
+  console.log(`
     ##   ##  ######   #####             ####       ##     ######     ##              ##  ##    ####    ######
     ##   ##  ##       ##  ##            ## ##     ####      ##      ####             ##  ##     ##         ##
     ##   ##  ##       ##  ##            ##  ##   ##  ##     ##     ##  ##            ##  ##     ##        ##
