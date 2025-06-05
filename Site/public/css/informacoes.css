@@ -215,9 +215,10 @@ button {
 
 .content .button {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  gap: 3vw;
 }
 
 .content .button button {

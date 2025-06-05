@@ -371,6 +371,108 @@ function alterarPrioridades(req, res) {
   }
 }
 
+function deletarUsuario(req, res) {
+  var idUsuario = req.body.idServer
+
+
+  if (idUsuario == undefined) {
+    res.status(400).send("O id do usuário está undefined!");
+  } else {
+    usuarioModel.deletarUsuario(idUsuario)
+      .then(
+        function (resultado) {
+          res.json(resultado);
+
+        }
+      ).catch(
+        function (erro) {
+          console.log(erro);
+          console.log(
+            "\nHouve um erro ao realizar o deleteUsuario! Erro: ",
+            erro.sqlMessage
+          );
+          res.status(500).json(erro.sqlMessage);
+        }
+      );
+  }
+}
+
+function deletarPreferencias(req, res) {
+  var idUsuario = req.body.idServer
+
+  if (idUsuario == undefined) {
+    res.status(400).send("O id do usuario está undefined!");
+  } else {
+
+    usuarioModel.deletarPreferencias(idUsuario)
+      .then(
+        function (resultado) {
+          res.json(resultado);
+        }
+      ).catch(
+        function (erro) {
+          console.log(erro);
+          console.log(
+            "\nHouve um erro ao realizar o deletarPreferencias! Erro: ",
+            erro.sqlMessage
+          );
+          res.status(500).json(erro.sqlMessage);
+        }
+      );
+  }
+}
+
+function deletarTipo(req, res) {
+  var idUsuario = req.body.idServer
+
+
+  if (idUsuario == undefined) {
+    res.status(400).send("O idUsuario está undefined!")
+  } else {
+
+    usuarioModel.deletarTipo(idUsuario)
+      .then(
+        function (resultado) {
+          res.json(resultado);
+        }
+      ).catch(
+        function (erro) {
+          console.log(erro);
+          console.log(
+            "\nHouve um erro ao realizar o deletarTipo! Erro: ",
+            erro.sqlMessage
+          );
+          res.status(500).json(erro.sqlMessage);
+        }
+      );
+  }
+}
+
+function deletarPrioridades(req, res) {
+  var idUsuario = req.body.idServer
+
+
+  if (idUsuario == undefined) {
+    res.status(400).send("O idUsuario está undefined!")
+  } else {
+    usuarioModel.deletarPrioridades(idUsuario)
+      .then(
+        function (resultado) {
+          res.json(resultado);
+        }
+      ).catch(
+        function (erro) {
+          console.log(erro);
+          console.log(
+            "\nHouve um erro ao realizar o deletarPrioridades! Erro: ",
+            erro.sqlMessage
+          );
+          res.status(500).json(erro.sqlMessage);
+        }
+      );
+  }
+}
+
 module.exports = {
   autenticar,
   cadastrarUsuario,
@@ -381,4 +483,8 @@ module.exports = {
   alterarPreferencias,
   alterarTipo,
   alterarPrioridades,
+  deletarUsuario,
+  deletarPreferencias,
+  deletarTipo,
+  deletarPrioridades
 }

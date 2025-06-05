@@ -113,6 +113,50 @@ function alterarPrioridades(economia, manutencao, seguranca, design, espaco, rev
   return database.executar(instrucaoSql);
 }
 
+function deletarUsuario(idUsuario) {
+  console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", idUsuario);
+
+  var instrucaoSql = `
+        DELETE FROM usuarios WHERE id = ${idUsuario};
+    `;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function deletarPreferencias(idUsuario) {
+  console.log("ACESSEI O USUARIO MODEL \n\n function cadastrarDados():", idUsuario);
+
+  const instrucaoSql = `
+        DELETE FROM preferencias WHERE fkUsuario = ${idUsuario};
+    `;
+
+  console.log("Executando a instrução SQL:\n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function deletarTipo(idUsuario) {
+  console.log("ACESSEI O USUARIO MODEL \n\n function deletarDados():", idUsuario);
+
+  const instrucaoSql = `
+        DELETE FROM tipoUso WHERE fkUsuario = ${idUsuario};
+    `;
+
+  console.log("Executando a instrução SQL:\n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function deletarPrioridades(idUsuario) {
+  console.log("ACESSEI O USUARIO MODEL \n\n function removerDados():", idUsuario);
+
+  const instrucaoSql = `
+        DELETE FROM prioridades WHERE fkUsuario = ${idUsuario};
+    `;
+
+  console.log("Executando a instrução SQL:\n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
 
 module.exports = {
   autenticar,
@@ -123,5 +167,9 @@ module.exports = {
   alterarUsuario,
   alterarPreferencias,
   alterarTipo,
-  alterarPrioridades
+  alterarPrioridades,
+  deletarUsuario,
+  deletarPreferencias,
+  deletarTipo,
+  deletarPrioridades
 };

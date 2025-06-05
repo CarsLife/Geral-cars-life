@@ -150,6 +150,9 @@
           <button onclick="verSenha()"><img src="../assets/verSenha.svg" alt="verSenha"></button>
         </section>
       </section>
+      <section class="button">
+        <button onclick="ExcluirConta()">Apagar Conta</button>
+      </section>
     `
   }
 
@@ -195,14 +198,14 @@
     }
   }
 
-  function ocutarSenha(){
+  function ocutarSenha() {
     setTimeout(() => {
-        finalizarAguardar();
-        secSenha.innerHTML = `
+      finalizarAguardar();
+      secSenha.innerHTML = `
           <input type="password" id="iptSenha" placeholder="********" value="${SENHA}" readonly>
           <button onclick="verSenha()"><img src="../assets/verSenha.svg" alt="verSenha"></button>
         `;
-      }, 1000)
+    }, 1000)
   }
 
   function verificar() {
@@ -324,6 +327,7 @@
       </section>
       <section class="button">
         <button onclick="Salvar()">Salvar alterações</button>
+        <button onclick="ExcluirConta()">Apagar Conta</button>
       </section>
     `
   }
@@ -491,6 +495,127 @@
           finalizarAguardar();
           erro.style.display = "flex";
           textoErro.innerHTML = "Houve um erro ao tentar atualizar o seu cadastro";
+        }, 1000);
+        setTimeout(sumirMensagem, 5000);
+      });
+
+    return false;
+  }
+
+  function ExcluirConta() {
+    aguardar();
+    setTimeout(() => {
+      finalizarAguardar();
+      erro.style.display = "flex";
+      cardErro.innerHTML = `
+        <button class="fecharButton" onclick="Fechar()">X</button>
+        <p id="textoErro">Confirme sua senha para continuar</p>
+        <input type="password" id="iptConfirmar" placeholder="******">
+        <button class="confirmarButton" onclick="confirmarExcluir()">Confirmar</button>
+      `
+    }, 1000);
+  }
+
+  function confirmarExcluir() {
+    sumirMensagem();
+    aguardar()
+    var iptSenha = document.getElementById("iptConfirmar").value;
+    if (iptSenha == SENHA) {
+      setTimeout(() => {
+        finalizarAguardar();
+        excluir()
+      }, 1000)
+    } else {
+      setTimeout(() => {
+        finalizarAguardar();
+        erro.style.display = "flex";
+        cardErro.innerHTML = `
+          <button class="fecharButton" onclick="Fechar()">X</button>
+          <p id="textoErro">Senha incorreta</p>
+        `;
+      }, 1000);
+      setTimeout(() => {
+        sumirMensagem();
+      }, 2000)
+    }
+  }
+
+  function excluir() {
+    aguardar();
+    fetch("/usuarios/deletarPrioridades", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idServer: ID
+      }),
+    })
+      .then(response => {
+        if (!response.ok) throw new Error("Erro ao deletar usuário");
+        return response.json();
+      })
+      .then(data => {
+        return fetch("/usuarios/deletarPreferencias", {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            idServer: ID
+          }),
+        });
+      })
+      .then(response => {
+        if (!response.ok) throw new Error("Erro ao deletar preferências");
+        return fetch("/usuarios/deletarTipo", {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            idServer: ID
+          }),
+        });
+      })
+      .then(response => {
+        if (!response.ok) throw new Error("Erro ao deletar tipo");
+        return fetch("/usuarios/deletarUsuario", {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            idServer: ID
+          }),
+        });
+      })
+      .then(response => {
+
+        console.log(response.status)
+        if (response.ok) {
+          setTimeout(() => {
+            erro.style.display = "flex";
+            cardErro.innerHTML = `
+              <button class="fecharButton" onclick="Fechar()">X</button>
+              <p id="textoErro">Usuario excluido com sucesso! Redirecionando para tela de inicial...</p>
+            `;
+          }, 1000);
+          setTimeout(() => {
+            Sair()
+          }, 5000);
+
+          finalizarAguardar();
+        } else {
+          throw new Error("Erro ao deletar o usuario");
+        }
+      })
+      .catch(error => {
+        console.error(`#ERRO: ${error}`);
+        setTimeout(() => {
+          finalizarAguardar();
+          erro.style.display = "flex";
+          textoErro.innerHTML = "Houve um erro ao tentar deletar o prioridades";
         }, 1000);
         setTimeout(sumirMensagem, 5000);
       });
