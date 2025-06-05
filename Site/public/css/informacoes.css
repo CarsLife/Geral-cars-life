@@ -8,15 +8,13 @@
   font-family: 'montserrat';
 }
 
-
-
 body {
   background: var(--backgroundDash);
   color: var(--textColor);
 
 }
 
-button{
+button {
   background-color: none;
   border: none;
 }
@@ -89,11 +87,35 @@ button{
   font-size: 1.67vw;
   font-weight: 500;
   padding-inline: .8vw;
+  outline: none;
 }
 
 .content .form .input input::placeholder {
   font-weight: bold;
   color: var(--placeHolder);
+}
+
+.content .form .input .senha {
+  margin-block: .2vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.content .form .input .senha input {
+  width: 45vw;
+  margin-right: 1vw;
+}
+
+.content .form .input .senha button {
+  background: none;
+  cursor: pointer;
+  transition-duration: .24s;
+}
+
+.content .form .input .senha button:hover {
+  transform: scale(1.1);
+  transition-duration: .24s;
 }
 
 .content .form .input select {
@@ -193,9 +215,10 @@ button{
 
 .content .button {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  gap: 3vw;
 }
 
 .content .button button {
@@ -278,9 +301,8 @@ button{
   margin-top: 2vh;
 }
 
-.erro .popup-erro button,
-.aguardando .popupAguardando button {
-
+.erro .popup-erro .fecharButton,
+.aguardando .popupAguardando .fecharButton {
   position: absolute;
   top: 1vw;
   right: 1vw;
@@ -292,6 +314,38 @@ button{
   transition: transform 0.2s ease;
 }
 
-.erro .popup-erro button:hover {
+.erro .popup-erro .fecharButton:hover {
   transform: scale(1.2);
+}
+
+.erro .popup-erro input {
+  width: 20vw;
+  height: 3.91vh;
+  margin-top: 1vh;
+  border-radius: 4.86vw;
+  border: none;
+  font-size: 1.67vw;
+  font-weight: 500;
+  padding-inline: .8vw;
+  outline: none;
+}
+
+.erro .popup-erro .confirmarButton {
+  background-color: var(--backgroundDash);
+  border-radius: 2.22vw;
+  margin-top: 1vh;
+  color: var(--textColor);
+  font-size: 1.67vw;
+  font-weight: 500;
+  padding-inline: .8vw;
+  cursor: pointer;
+  transition-duration: .240S;
+}
+
+.erro .popup-erro .confirmarButton:hover {
+  background-color: var(--textColor);
+  border: 1px var(--backgroundDash) solid;
+  color: var(--backgroundDash);
+  transform: scale(1.1);
+  transition-duration: .240S;
 }

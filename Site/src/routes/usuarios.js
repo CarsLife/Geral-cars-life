@@ -39,4 +39,20 @@ router.put("/alterarPrioridades", function (req, res) {
   usuarioController.alterarPrioridades(req, res);
 });
 
+router.delete("/deletarUsuario", function (req, res) {
+  usuarioController.deletarUsuario(req, res);
+});
+
+router.delete("/deletarPreferencias", function (req, res) {
+  usuarioController.deletarPreferencias(req, res);
+});
+
+router.delete("/deletarTipo", function (req, res) {
+  usuarioController.deletarTipo(req, res);
+});
+
+router.delete("/deletarPrioridades", function (req, res) {
+  usuarioController.deletarPrioridades(req, res);
+});
+
 module.exports = router;
