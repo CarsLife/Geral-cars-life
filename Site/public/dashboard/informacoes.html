@@ -22,14 +22,14 @@
   </header>
   <div id="aguardar" class="aguardando" style="display: none;">
     <div id="cardAguardar" class="popupAguardando">
-      <button onclick="finalizarAguardar()">X</button>
+      <button class="fecharButton" onclick="finalizarAguardar()">X</button>
       <img src="../assets/loading.gif" alt="" width="40vw" height="40vh">
       <p>Loading...</p>
     </div>
   </div>
   <div id="erro" class="erro" style="display: none;">
     <div id="cardErro" class="popup-erro">
-      <button onclick="Fechar()">X</button>
+      <button class="fecharButton" onclick="Fechar()">X</button>
       <p id="textoErro"></p>
     </div>
   </div>
@@ -37,10 +37,9 @@
   <div class="content">
     <div class="cabecalho">
       <h1>Minhas informações</h1>
-      <button onclick="editar()"><img src="../assets/edit.svg" alt=""></button>
+      <button onclick="verificar()"><img src="../assets/edit.svg" alt="editar"></button>
     </div>
     <div class="form" id="divForm">
-
     </div>
   </div>
 </body>
@@ -146,9 +145,103 @@
       </section>
       <section class="input">
         <p>Digite sua senha:</p>
-      <input type="text" id="iptSenha" placeholder="********" value="${SENHA}" readonly>
+        <section  id="secSenha" class="senha">
+          <input type="password" id="iptSenha" placeholder="********" value="${SENHA}" readonly>
+          <button onclick="verSenha()"><img src="../assets/verSenha.svg" alt="verSenha"></button>
+        </section>
       </section>
     `
+  }
+
+  function verSenha() {
+    aguardar();
+    setTimeout(() => {
+      finalizarAguardar();
+      erro.style.display = "flex";
+      cardErro.innerHTML = `
+        <button class="fecharButton" onclick="Fechar()">X</button>
+        <p id="textoErro">Confirme sua senha para continuar</p>
+        <input type="password" id="iptConfirmar" placeholder="******">
+        <button class="confirmarButton" onclick="confirmarVerSenha()">Confirmar</button>
+      `
+    }, 1000);
+  }
+
+  function confirmarVerSenha() {
+    sumirMensagem();
+    aguardar()
+    var iptSenha = document.getElementById("iptConfirmar").value;
+    if (iptSenha == SENHA) {
+      setTimeout(() => {
+        finalizarAguardar();
+        secSenha.innerHTML = `
+          <input type="text" id="iptSenha" placeholder="********" value="${SENHA}" readonly>
+          <button onclick="ocutarSenha()"><img src="../assets/ocutarSenha.svg" alt="ocutarSenha"></button>
+        `;
+      }, 1000)
+    } else {
+      setTimeout(() => {
+        finalizarAguardar();
+        erro.style.display = "flex";
+        cardErro.innerHTML = `
+          <button class="fecharButton" onclick="Fechar()">X</button>
+          <p id="textoErro">Senha incorreta</p>
+        `;
+      }, 1000);
+      setTimeout(() => {
+        sumirMensagem();
+        verSenha()
+      }, 2000)
+    }
+  }
+
+  function ocutarSenha(){
+    setTimeout(() => {
+        finalizarAguardar();
+        secSenha.innerHTML = `
+          <input type="password" id="iptSenha" placeholder="********" value="${SENHA}" readonly>
+          <button onclick="verSenha()"><img src="../assets/verSenha.svg" alt="verSenha"></button>
+        `;
+      }, 1000)
+  }
+
+  function verificar() {
+    aguardar();
+    setTimeout(() => {
+      finalizarAguardar();
+      erro.style.display = "flex";
+      cardErro.innerHTML = `
+        <button class="fecharButton" onclick="Fechar()">X</button>
+        <p id="textoErro">Confirme sua senha para continuar</p>
+        <input type="password" id="iptConfirmar" placeholder="******">
+        <button class="confirmarButton" onclick="confirmar()">Confirmar</button>
+      `
+    }, 1000);
+  }
+
+  function confirmar() {
+    sumirMensagem();
+    aguardar()
+    var iptSenha = document.getElementById("iptConfirmar").value;
+    if (iptSenha == SENHA) {
+      setTimeout(() => {
+        finalizarAguardar();
+        editar()
+      }, 1000)
+    } else {
+      setTimeout(() => {
+        finalizarAguardar();
+        erro.style.display = "flex";
+        cardErro.innerHTML = `
+          <button class="fecharButton" onclick="Fechar()">X</button>
+          <p id="textoErro">Senha incorreta</p>
+        `;
+      }, 1000);
+      setTimeout(() => {
+        sumirMensagem();
+        verificar()
+      }, 2000)
+    }
   }
 
   function editar() {
