@@ -5,7 +5,6 @@
   --textColor: #fff;
   --link: #0084FF;
   --placeHolder: #606060;
-
   --backgroundDash: #420000;
   --backgroundCard: #620000;
   --backgroundSelect: #1B1818;
@@ -14,4 +13,10 @@
   --darkBlue: #0C0146;
   --darkYellow: #242400;
   --hoverButton: #454401;
+  --selectColor: #ffffff34;
+
+}
+
+*::selection {
+  background-color: var(--selectColor);
 }
