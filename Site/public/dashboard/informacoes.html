@@ -402,7 +402,10 @@
     } else {
       setTimeout(() => {
         erro.style.display = "flex";
-        textoErro.innerHTML = "Alteração sendo realizado...";
+        cardErro.innerHTML = `
+        <button class="fecharButton" onclick="Fechar()">X</button>
+        <p id="textoErro">Alteração sendo realizado...</p>
+        `
       }, 1000);
     }
     fetch("/usuarios/alterarUsuario", {
